@@ -923,9 +923,7 @@ if GlobalSys:CommandLineCheck("-novr") then
 
         -- Ladders and position based interactions
         if GetMapName() == "a1_intro_world" then
-            if vlua.find(Entities:FindAllInSphere(Vector(-958, 1735, 118), 10), player) then
-                DoEntFireByInstanceHandle(Entities:FindByName(nil, "205_8032_button_pusher_prop"), "RunScriptFile", "useextra", 0, nil, nil)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(648, -1757, -141), 10), player) then
+            if vlua.find(Entities:FindAllInSphere(Vector(648, -1757, -141), 10), player) then
                 ClimbLadder(-64)
             elseif vlua.find(Entities:FindAllInSphere(Vector(530, -2331, -84), 25), player) then
                 ClimbLadderSound()
