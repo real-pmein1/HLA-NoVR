@@ -6,7 +6,10 @@ This mod makes the entire game playable, with many VR interactions preserved in 
 This mod has been further modded to add/change/remove some features so it plays more like the VR game and to fix some bugs.
 
 ## Installation - Windows
-[Download the mod](https://github.com/real-pmein1/HLA-NoVR/archive/refs/heads/main.zip) and extract the `game` folder to your Alyx root folder where there should already be a folder called `game`.
+There are currently two branches:
+* [Main](https://github.com/real-pmein1/HLA-NoVR/archive/refs/heads/main.zip) (basically the unchanged HLA-NoVR mod)
+* [WIP](https://github.com/real-pmein1/HLA-NoVR/archive/refs/heads/wip.zip) (work in progress mod, may break maps not listed in the change log)
+Download your preferred option and extract the `game` folder to your Alyx root folder where there should already be a folder called `game`.
 
 [Download and run the official launcher](https://github.com/real-pmein1/HLA-NoVR-Launcher/releases/latest) from any folder.  It will ask where your Alyx installation is.  Choose the location of the `game` folder.
 
