@@ -1,0 +1,43 @@
+General
+=======
+
+Added player_pos script to all maps for in-game position-based triggers
+Added some new bindings
+Changed some default bindings
+Changed minimum FOV to 60 but force the main menu to 80
+Changed resin HUD counter to blue
+Changed flashlight to be automatic by default, as per the normal game (set a key to FLASHLIGHT in bindings.lua to make it manually controlled)
+
+a1_intro_world
+==============
+
+Added usable radio tuner (press and hold USE to rotate it)
+Added usable monitor buttons in the Eli call area
+Added usable monitor dial
+Changed Eli call button to only function on the button and not on the microphone
+Changed the greenhouse door to open as if slightly heavier and added the ability to close it
+Changed the video camera release key from J to the normal USE button (default E)
+Changed both of the elevators' button commands from a debug command to a button press
+Removed the auto-teleport on the end vent so it can be manually opened and traversed using a crouch-jump
+
+a1_intro_world_2
+================
+
+Added crouch tutorial message to the crashed van's exit
+Added missing lightstand switch in Russell's hideout entrance
+Added missing monitor switch on Russell's hideout PC
+Changed the headset pickup from a debug command to the correct output command
+Changed the crashed van to require crouching to exit it
+Changed the parked car to have its door correctly open
+Changed Russell's window to be initially closed instead of partially open
+Changed the auto-teleport on Russell's window so it can be manually opened
+
+a2_quarantine_entrance
+======================
+
+No changes
+
+a2_pistol
+=========
+
+No changes
