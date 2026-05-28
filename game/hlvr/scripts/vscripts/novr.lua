@@ -1657,7 +1657,7 @@ if GlobalSys:CommandLineCheck("-novr") then
                         SendToConsole("ent_fire 205_2724_hingecam enablecollision")
                         SendToConsole("ent_fire player_speedmod ModifySpeed 1")
                         SendToConsole("bind " .. PRIMARY_ATTACK .. " \"+customattack;viewmodel_update\"")
-                        SendToConsole("unbind J")
+                        SendToConsole("bind " .. INTERACT .. " +useextra")
                     end
                 end, "", 0)
             elseif GetMapName() == "a1_intro_world_2" then

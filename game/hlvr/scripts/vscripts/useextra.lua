@@ -516,7 +516,7 @@ if name == "greenhouse_door_lock" then
 end
 
 if name == "205_2724_hingecam" then
-    SendToConsole("bind J novr_leavehingecam")
+    SendToConsole("bind " .. INTERACT .. " novr_leavehingecam")
     if thisEntity:Attribute_GetIntValue("used", 0) == 0 then
         local ent = SpawnEntityFromTableSynchronous("game_text", {["effect"]=2, ["spawnflags"]=1, ["color"]="230 230 230", ["color2"]="0 0 0", ["fadein"]=0, ["fadeout"]=0.15, ["fxtime"]=0.25, ["holdtime"]=5, ["x"]=-1, ["y"]=0.6})
         DoEntFireByInstanceHandle(ent, "SetText", "Press [J] to get out", 0, nil, nil)
