@@ -28,6 +28,8 @@ Changes can be found on the [change log](https://github.com/real-pmein1/HLA-NoVR
 ## Credits
 - Mod changes by pmein1
 
+- Position script by `unknown`
+
 #### HLA-NoVR Team Members
 - Project Management, Steam Deck Version and Motion Controls by Spider-Man
 - Former Main Development by GB_2
