@@ -334,6 +334,48 @@ elseif (name == "barricade_door_hook" and player:Attribute_GetIntValue("locked_j
             return 0
         end
     end, "AnimateCompletionValue", 0)
+elseif (vlua.find(name, "radio_tuner")) then
+	completion_amount = _G.tuner_amount
+	player:SetThink(function()
+		if player:Attribute_GetIntValue("use_released", 0) == 1 then
+			if thisEntity:Attribute_GetIntValue("tuner_direction", 0) == 0 then
+				thisEntity:Attribute_SetIntValue("tuner_direction", 1)
+			else
+				thisEntity:Attribute_SetIntValue("tuner_direction", 0)
+			end
+		else
+			SendToConsole("ent_fire 205_4130_alyx_radio EnableReturnToCompletion")
+			if thisEntity:Attribute_GetIntValue("tuner_direction", 0) == 0 then
+				completion_amount = completion_amount + 0.001
+			else
+				completion_amount = completion_amount - 0.001
+			end
+			_G.tuner_amount = completion_amount
+			SendToConsole("ent_fire 205_4130_alyx_radio setreturntocompletionamount " .. completion_amount)
+			return 0
+		end
+	end, "Interacting", 0)
+elseif (vlua.find(name, "monitor_dial_2")) then
+	completion_amount = _G.dial_amount
+	player:SetThink(function()
+		if player:Attribute_GetIntValue("use_released", 0) == 1 then
+			if thisEntity:Attribute_GetIntValue("dial_direction", 0) == 0 then
+				thisEntity:Attribute_SetIntValue("dial_direction", 1)
+			else
+				thisEntity:Attribute_SetIntValue("dial_direction", 0)
+			end
+		else
+			SendToConsole("ent_fire monitor_dial EnableReturnToCompletion")
+			if thisEntity:Attribute_GetIntValue("dial_direction", 0) == 0 then
+				completion_amount = completion_amount + 0.002
+			else
+				completion_amount = completion_amount - 0.002
+			end
+			_G.dial_amount = completion_amount
+			SendToConsole("ent_fire monitor_dial setreturntocompletionamount " .. completion_amount)
+			return 0
+		end
+	end, "Interacting", 0)
 end
 
 if vlua.find(model, "doorhandle") then
@@ -508,6 +550,26 @@ end
 
 if name == "microphone" or name == "call_button_prop" or model == "maps/a1_intro_world/entities/unnamed_205_2961_1020.vmdl" then
     SendToConsole("ent_fire call_button_relay trigger")
+end
+
+if name == "button_monitor_upper_left_2" then
+	SendToConsole("ent_fire branch_screen_up_left toggletest")
+	SendToConsole("ent_fire snd_button_a StartSound")
+end
+
+if name == "button_monitor_upper_right_2" then
+	SendToConsole("ent_fire branch_screen_up_right toggletest")
+	SendToConsole("ent_fire snd_button_c StartSound")
+end
+
+if name == "button_monitor_lower_left_2" then
+	SendToConsole("ent_fire branch_screen_left_lower toggletest")
+	SendToConsole("ent_fire snd_button_b StartSound")
+end
+
+if name == "button_monitor_lower_right_2" then
+	SendToConsole("ent_fire branch_screen_lower_right toggletest")
+	SendToConsole("ent_fire snd_button_d StartSound")
 end
 
 if name == "greenhouse_door_lock" then
