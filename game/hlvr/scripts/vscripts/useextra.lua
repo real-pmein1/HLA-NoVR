@@ -323,47 +323,47 @@ elseif (name == "barricade_door_hook" and player:Attribute_GetIntValue("locked_j
         end
     end, "AnimateCompletionValue", 0)
 elseif (vlua.find(name, "radio_tuner")) then
-	completion_amount = _G.tuner_amount
-	player:SetThink(function()
-		if player:Attribute_GetIntValue("use_released", 0) == 1 then
-			if thisEntity:Attribute_GetIntValue("tuner_direction", 0) == 0 then
-				thisEntity:Attribute_SetIntValue("tuner_direction", 1)
-			else
-				thisEntity:Attribute_SetIntValue("tuner_direction", 0)
-			end
-		else
-			SendToConsole("ent_fire 205_4130_alyx_radio EnableReturnToCompletion")
-			if thisEntity:Attribute_GetIntValue("tuner_direction", 0) == 0 then
-				completion_amount = completion_amount + 0.001
-			else
-				completion_amount = completion_amount - 0.001
-			end
-			_G.tuner_amount = completion_amount
-			SendToConsole("ent_fire 205_4130_alyx_radio setreturntocompletionamount " .. completion_amount)
-			return 0
-		end
-	end, "Interacting", 0)
+    completion_amount = _G.tuner_amount
+    player:SetThink(function()
+        if player:Attribute_GetIntValue("use_released", 0) == 1 then
+            if thisEntity:Attribute_GetIntValue("tuner_direction", 0) == 0 then
+                thisEntity:Attribute_SetIntValue("tuner_direction", 1)
+            else
+                thisEntity:Attribute_SetIntValue("tuner_direction", 0)
+            end
+        else
+            SendToConsole("ent_fire 205_4130_alyx_radio EnableReturnToCompletion")
+            if thisEntity:Attribute_GetIntValue("tuner_direction", 0) == 0 then
+                completion_amount = completion_amount + 0.001
+            else
+                completion_amount = completion_amount - 0.001
+            end
+            _G.tuner_amount = completion_amount
+            SendToConsole("ent_fire 205_4130_alyx_radio setreturntocompletionamount " .. completion_amount)
+            return 0
+        end
+    end, "Interacting", 0)
 elseif (vlua.find(name, "monitor_dial_2")) then
-	completion_amount = _G.dial_amount
-	player:SetThink(function()
-		if player:Attribute_GetIntValue("use_released", 0) == 1 then
-			if thisEntity:Attribute_GetIntValue("dial_direction", 0) == 0 then
-				thisEntity:Attribute_SetIntValue("dial_direction", 1)
-			else
-				thisEntity:Attribute_SetIntValue("dial_direction", 0)
-			end
-		else
-			SendToConsole("ent_fire monitor_dial EnableReturnToCompletion")
-			if thisEntity:Attribute_GetIntValue("dial_direction", 0) == 0 then
-				completion_amount = completion_amount + 0.002
-			else
-				completion_amount = completion_amount - 0.002
-			end
-			_G.dial_amount = completion_amount
-			SendToConsole("ent_fire monitor_dial setreturntocompletionamount " .. completion_amount)
-			return 0
-		end
-	end, "Interacting", 0)
+    completion_amount = _G.dial_amount
+    player:SetThink(function()
+        if player:Attribute_GetIntValue("use_released", 0) == 1 then
+            if thisEntity:Attribute_GetIntValue("dial_direction", 0) == 0 then
+                thisEntity:Attribute_SetIntValue("dial_direction", 1)
+            else
+                thisEntity:Attribute_SetIntValue("dial_direction", 0)
+            end
+        else
+            SendToConsole("ent_fire monitor_dial EnableReturnToCompletion")
+            if thisEntity:Attribute_GetIntValue("dial_direction", 0) == 0 then
+                completion_amount = completion_amount + 0.002
+            else
+                completion_amount = completion_amount - 0.002
+            end
+            _G.dial_amount = completion_amount
+            SendToConsole("ent_fire monitor_dial setreturntocompletionamount " .. completion_amount)
+            return 0
+        end
+    end, "Interacting", 0)
 end
 
 if vlua.find(model, "doorhandle") then
@@ -541,23 +541,23 @@ if name == "call_button_prop_2" then
 end
 
 if name == "button_monitor_upper_left_2" then
-	SendToConsole("ent_fire branch_screen_up_left toggletest")
-	SendToConsole("ent_fire snd_button_a StartSound")
+    SendToConsole("ent_fire branch_screen_up_left toggletest")
+    SendToConsole("ent_fire snd_button_a StartSound")
 end
 
 if name == "button_monitor_upper_right_2" then
-	SendToConsole("ent_fire branch_screen_up_right toggletest")
-	SendToConsole("ent_fire snd_button_c StartSound")
+    SendToConsole("ent_fire branch_screen_up_right toggletest")
+    SendToConsole("ent_fire snd_button_c StartSound")
 end
 
 if name == "button_monitor_lower_left_2" then
-	SendToConsole("ent_fire branch_screen_left_lower toggletest")
-	SendToConsole("ent_fire snd_button_b StartSound")
+    SendToConsole("ent_fire branch_screen_left_lower toggletest")
+    SendToConsole("ent_fire snd_button_b StartSound")
 end
 
 if name == "button_monitor_lower_right_2" then
-	SendToConsole("ent_fire branch_screen_lower_right toggletest")
-	SendToConsole("ent_fire snd_button_d StartSound")
+    SendToConsole("ent_fire branch_screen_lower_right toggletest")
+    SendToConsole("ent_fire snd_button_d StartSound")
 end
 
 if name == "greenhouse_door_lock" then
@@ -566,14 +566,14 @@ if name == "greenhouse_door_lock" then
 end
 
 if (vlua.find(name, "greenhouse_door")) then
-	if player:Attribute_GetIntValue("greenhouse_door_open", 0) == 1 then
-		SendToConsole("ent_fire greenhouse_door enablereturntocompletion; ent_fire greenhouse_door setreturntocompletionstyle 1; ent_fire greenhouse_door setreturntocompletionamount 0")
-		player:Attribute_SetIntValue("greenhouse_door_open", 0)
-	else
-		SendToConsole("ent_fire greenhouse_door enablereturntocompletion; ent_fire greenhouse_door setreturntocompletionstyle 1; ent_fire greenhouse_door setreturntocompletionamount 1")
-		player:Attribute_SetIntValue("greenhouse_door_open", 1)
-		return 0
-	end
+    if player:Attribute_GetIntValue("greenhouse_door_open", 0) == 1 then
+        SendToConsole("ent_fire greenhouse_door enablereturntocompletion; ent_fire greenhouse_door setreturntocompletionstyle 1; ent_fire greenhouse_door setreturntocompletionamount 0")
+        player:Attribute_SetIntValue("greenhouse_door_open", 0)
+    else
+        SendToConsole("ent_fire greenhouse_door enablereturntocompletion; ent_fire greenhouse_door setreturntocompletionstyle 1; ent_fire greenhouse_door setreturntocompletionamount 1")
+        player:Attribute_SetIntValue("greenhouse_door_open", 1)
+        return 0
+    end
 end
 
 if name == "205_2724_hingecam" then
@@ -683,14 +683,14 @@ if name == "washing_machine_button_4" then
 end
 
 if name == "563_vent_door_usable" then
-	SendToConsole("ent_fire 563_vent_phys_hinge setoffset 0.39;ent_fire 563_vent_door_usable disable;ent_fire 563_vent_door_usable disablecollision")
+    SendToConsole("ent_fire 563_vent_phys_hinge setoffset 0.39;ent_fire 563_vent_door_usable disable;ent_fire 563_vent_door_usable disablecollision")
 end
 
 
 ---------- a1_intro_world_2 ----------
 
 if name == "russell_headset" then
-	SendToConsole("ent_fire_output russell_headset onputonheadset")
+    SendToConsole("ent_fire_output russell_headset onputonheadset")
 end
 
 if name == "carousel" then
@@ -710,7 +710,7 @@ if vlua.find(name, "mailbox") and vlua.find(model, "door") then
 end
 
 if name == "russell_entry_window" and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
-	SendToConsole("ent_fire russell_entry_window setreturntocompletionamount 1;ent_fire russell_entry_window setreturntocompletionstyle 2;ent_fire russell_entry_window enablereturntocompletion")
+    SendToConsole("ent_fire russell_entry_window setreturntocompletionamount 1;ent_fire russell_entry_window setreturntocompletionstyle 2;ent_fire russell_entry_window enablereturntocompletion")
     thisEntity:Attribute_SetIntValue("used", 1)
 end
 
@@ -754,23 +754,23 @@ if name == "glove_dispenser_brush" and thisEntity:Attribute_GetIntValue("used", 
 end
 
 if name == "monitor_switch" then
-	if thisEntity:Attribute_GetIntValue("switch_on", 0) == 0 then
-		SendToConsole("ent_fire_output 621_6822_switch_on_handpose onhandposed")
-		thisEntity:Attribute_SetIntValue("switch_on", 1)
-	else
-		SendToConsole("ent_fire_output 621_6822_switch_off_handpose onhandposed")
-		thisEntity:Attribute_SetIntValue("switch_on", 0)
-	end
+    if thisEntity:Attribute_GetIntValue("switch_on", 0) == 0 then
+        SendToConsole("ent_fire_output 621_6822_switch_on_handpose onhandposed")
+        thisEntity:Attribute_SetIntValue("switch_on", 1)
+    else
+        SendToConsole("ent_fire_output 621_6822_switch_off_handpose onhandposed")
+        thisEntity:Attribute_SetIntValue("switch_on", 0)
+    end
 end
 
 if name == "lightstand_switch" then
-	if thisEntity:Attribute_GetIntValue("switch_on", 0) == 0 then
-		SendToConsole("ent_fire_output 621_6492_switch_off_handpose onhandposed")
-		thisEntity:Attribute_SetIntValue("switch_on", 1)
-	else
-		SendToConsole("ent_fire_output 621_6492_switch_on_handpose onhandposed")
-		thisEntity:Attribute_SetIntValue("switch_on", 0)
-	end
+    if thisEntity:Attribute_GetIntValue("switch_on", 0) == 0 then
+        SendToConsole("ent_fire_output 621_6492_switch_off_handpose onhandposed")
+        thisEntity:Attribute_SetIntValue("switch_on", 1)
+    else
+        SendToConsole("ent_fire_output 621_6492_switch_on_handpose onhandposed")
+        thisEntity:Attribute_SetIntValue("switch_on", 0)
+    end
 end
 
 
