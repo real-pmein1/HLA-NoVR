@@ -44,6 +44,7 @@ function MainThinkFunc()
 	elseif GetMapName() == "a1_intro_world_2" then
 		if ( xpos > -1370.55 and xpos < -1366.44 ) and ( ypos > 2295 and ypos < 2343 ) and ( zpos > -100 and zpos < -90 ) then
 			SendToConsole("setpos_player 1 -1408 2307 -114")
+			SendToConsole("ent_fire 4962_car_door_left_front open")
 		elseif ( xpos > -1745 and xpos < -1710 ) and ( ypos > 324 and ypos < 327 ) and ( zpos > 140 and zpos < 143 ) then
 			SendToConsole("setpos_player 1 -1727.60 303.17 94.03")
 		end
