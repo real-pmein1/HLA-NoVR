@@ -683,6 +683,10 @@ if name == "washing_machine_button_4" then
     SendToConsole("ent_fire_output 273_3642_washing_machine_button_handpose onhandposed")
 end
 
+if name == "563_vent_door_usable" then
+	SendToConsole("ent_fire 563_vent_phys_hinge setoffset 0.39;ent_fire 563_vent_door_usable disable;ent_fire 563_vent_door_usable disablecollision")
+end
+
 
 ---------- a1_intro_world_2 ----------
 

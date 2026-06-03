@@ -925,10 +925,6 @@ if GlobalSys:CommandLineCheck("-novr") then
         if GetMapName() == "a1_intro_world" then
             if vlua.find(Entities:FindAllInSphere(Vector(648, -1757, -141), 10), player) then
                 ClimbLadder(-64)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(530, -2331, -84), 25), player) then
-                ClimbLadderSound()
-                SendToConsole("fadein 0.2")
-                SendToConsole("setpos_exact 574 -2328 -130")
             elseif vlua.find(Entities:FindAllInSphere(Vector(606, -2339, -217), 20), player) then
                 if 135 < player:GetAngles().y or player:GetAngles().y < -135 then
                     DoEntFireByInstanceHandle(Entities:FindByName(nil, "979_518_button_pusher_prop"), "RunScriptFile", "useextra", 0, nil, nil)
@@ -1647,9 +1643,11 @@ if GlobalSys:CommandLineCheck("-novr") then
                     ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="washing_machine_button_2", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props/lightswitch_2_switch.vmdl", ["origin"]="1393.17 -923.015 -347.75", ["angles"]="0 0 0", ["modelscale"]=2})
                     ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="washing_machine_button_3", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props/lightswitch_2_switch.vmdl", ["origin"]="1393.17 -952.015 -347.75", ["angles"]="0 0 0", ["modelscale"]=2})
                     ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="washing_machine_button_4", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props/lightswitch_2_switch.vmdl", ["origin"]="1396.98 -982.97 -347.75", ["angles"]="0 0 0", ["modelscale"]=2})
+					
+                    ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="563_vent_door_usable", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props/lightswitch_2_switch.vmdl", ["origin"]="540.885254 -2331.525635 -108.947418", ["angles"]="0.000000 4.035754 -180.000000", ["modelscale"]=10})
 
                     SendToConsole("ent_fire 563_vent_door DisablePickup")
-                    SendToConsole("ent_fire 563_vent_phys_hinge SetOffset 0.1")
+                    SendToConsole("ent_fire 563_vent_phys_hinge SetOffset 0")
 
                     -- TODO: Remove when Map Edits are done
                     ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["solid"]=6, ["renderamt"]=0, ["model"]="models/props/industrial_door_1_40_92_white_temp.vmdl", ["origin"]="640 -1770 -210", ["angles"]="0 -10 0", ["modelscale"]=0.75})
