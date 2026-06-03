@@ -1647,7 +1647,6 @@ if GlobalSys:CommandLineCheck("-novr") then
                     ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="563_vent_door_usable", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props/lightswitch_2_switch.vmdl", ["origin"]="540.885254 -2331.525635 -108.947418", ["angles"]="0.000000 4.035754 -180.000000", ["modelscale"]=10})
 
                     SendToConsole("ent_fire 563_vent_door DisablePickup")
-                    SendToConsole("ent_fire 563_vent_phys_hinge SetOffset 0")
 
                     -- TODO: Remove when Map Edits are done
                     ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["solid"]=6, ["renderamt"]=0, ["model"]="models/props/industrial_door_1_40_92_white_temp.vmdl", ["origin"]="640 -1770 -210", ["angles"]="0 -10 0", ["modelscale"]=0.75})
