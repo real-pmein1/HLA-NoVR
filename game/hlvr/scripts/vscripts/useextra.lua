@@ -56,7 +56,7 @@ if map == "a3_distillery" then
     end
 end
 
-if not vlua.find(model, "doorhandle") and name ~= "russell_entry_window" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
+if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
     if vlua.find(name, "slide_train_door") and Entities:FindByClassnameNearest("phys_constraint", thisEntity:GetCenter(), 20) then
         return
     end
@@ -65,11 +65,6 @@ if not vlua.find(model, "doorhandle") and name ~= "russell_entry_window" and nam
         return
     end
 
-    if name == "greenhouse_door" then
-        if string.format("%.2f", thisEntity:GetCycle()) ~= "0.05" then
-            return
-        end
-    end
 
     local count = 0
     if class == "prop_animinteractable" and model == "models/props_subway/scenes/desk_lever.vmdl" then
@@ -158,13 +153,6 @@ if not vlua.find(model, "doorhandle") and name ~= "russell_entry_window" and nam
         thisEntity:FireOutput("OnCompletionB", nil, nil, nil, 0)
     end
 
-    if name == "greenhouse_door" then
-        count = thisEntity:GetCycle()
-        StartSoundEvent("Sliding_Window.Down", player)
-        player:SetThink(function()
-            StopSoundEvent("Sliding_Window.Down", player)
-        end, "StopGreenhouseDoorSound", 1)
-    end
 
     if name == "barricade_door_hook" then
         count = thisEntity:GetCycle()
@@ -575,6 +563,17 @@ end
 if name == "greenhouse_door_lock" then
     local ent = Entities:FindByName(nil, "greenhouse_door")
     DoEntFireByInstanceHandle(ent, "RunScriptFile", "useextra", 0, nil, nil)
+end
+
+if (vlua.find(name, "greenhouse_door")) then
+	if player:Attribute_GetIntValue("greenhouse_door_open", 0) == 1 then
+		SendToConsole("ent_fire greenhouse_door enablereturntocompletion; ent_fire greenhouse_door setreturntocompletionstyle 1; ent_fire greenhouse_door setreturntocompletionamount 0")
+		player:Attribute_SetIntValue("greenhouse_door_open", 0)
+	else
+		SendToConsole("ent_fire greenhouse_door enablereturntocompletion; ent_fire greenhouse_door setreturntocompletionstyle 1; ent_fire greenhouse_door setreturntocompletionamount 1")
+		player:Attribute_SetIntValue("greenhouse_door_open", 1)
+		return 0
+	end
 end
 
 if name == "205_2724_hingecam" then
