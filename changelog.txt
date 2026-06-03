@@ -32,12 +32,13 @@ Changed the parked car to have its door correctly open
 Changed Russell's window to be initially closed instead of partially open
 Changed the auto-teleport on Russell's window so it can be manually opened
 
-a2_quarantine_entrance
-======================
+a2_quarantine_entrance / a2_pistol
+==================================
 
 No changes
 
-a2_pistol
-=========
+a2_hideout
+==========
 
-No changes
+Changed the rollup door crank wheel to turn
+Changed the bell to pull and chime correctly
