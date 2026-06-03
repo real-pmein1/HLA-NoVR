@@ -689,7 +689,6 @@ end
 
 ---------- a1_intro_world_2 ----------
 
-    SendToConsole("ent_fire 4962_car_door_left_front Close")
 if name == "russell_headset" then
 	SendToConsole("ent_fire_output russell_headset onputonheadset")
 end
