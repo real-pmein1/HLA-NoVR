@@ -41,6 +41,10 @@ function MainThinkFunc()
 		elseif ( xpos > 562 and xpos < 655 ) and ( ypos > -2359 and ypos < -2310 ) then
 			SendToConsole("ent_fire 563_vent_phys_hinge setoffset 0")
 		end
+	elseif GetMapName() == "a1_intro_world_2" then
+		if ( xpos > -1370.55 and xpos < -1366.44 ) and ( ypos > 2295 and ypos < 2343 ) and ( zpos > -100 and zpos < -90 ) then
+			SendToConsole("setpos_player 1 -1408 2307 -114")
+		end
 	end
 	
 	return 0.5
