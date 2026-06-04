@@ -827,9 +827,11 @@ if map == "a2_headcrabs_tunnel" then
         SendToConsole("ent_remove flashlight")
         SendToConsole("ent_remove fake_flashlight_for_room")
 
-        local ent = SpawnEntityFromTableSynchronous("env_message", {["message"]="FLASHLIGHT"})
-        DoEntFireByInstanceHandle(ent, "ShowMessage", "", 0, nil, nil)
-        SendToConsole("snd_sos_start_soundevent Instructor.StartLesson")
+        if not FLASHLIGHT == "" then
+            local ent = SpawnEntityFromTableSynchronous("env_message", {["message"]="FLASHLIGHT"})
+            DoEntFireByInstanceHandle(ent, "ShowMessage", "", 0, nil, nil)
+            SendToConsole("snd_sos_start_soundevent Instructor.StartLesson")
+        end
 
         SendToConsole("inv_flashlight")
     end
