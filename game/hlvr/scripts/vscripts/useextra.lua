@@ -834,6 +834,7 @@ if map == "a2_headcrabs_tunnel" then
         end
 
         SendToConsole("inv_flashlight")
+        _G.flashlight_on = "1"
     end
 end
 
