@@ -81,13 +81,19 @@ end
 Convars:RegisterCommand("inv_flashlight", function()
 	if flashlight_ent ~= nil then
 		destroy_flashlight()
+		Entities:GetLocalPlayer():Attribute_SetIntValue("flashlight_on", 0)
+		_G.flashlight_on = "0"
 	else
 		create_flashlight()
+		Entities:GetLocalPlayer():Attribute_SetIntValue("flashlight_on", 1)
+		_G.flashlight_on = "1"
 	end 
 end, "Toggles the flashlight", 0)
 
 Convars:RegisterCommand("disable_flashlight", function()
 	if flashlight_ent ~= nil then
 		destroy_flashlight()
-	end 
+	end
+	Entities:GetLocalPlayer():Attribute_SetIntValue("flashlight_on", 0)
+	_G.flashlight_on = "0"
 end, "Disables the flashlight", 0)

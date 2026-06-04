@@ -52,6 +52,9 @@ function MainThinkFunc()
 	
 	-- FLASHLIGHT
 	if playerEnt_pos:Attribute_GetIntValue("auto_flashlight", 1) == 1 then
+		if Entities:GetLocalPlayer():Attribute_GetIntValue("flashlight_on", 0) == 1 and _G.flashlight_on == "0" then
+			SendToConsole("disable_flashlight; inv_flashlight")
+		end
 		if string.match(GetMapName(), "a2_headcrabs_tunnel") then
 			if ( xpos > 991 and xpos < 1072 ) and ( ypos > -2456 and ypos < -2375 ) then
 				SendToConsole("disable_flashlight")
