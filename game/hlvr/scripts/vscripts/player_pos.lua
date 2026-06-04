@@ -1,5 +1,6 @@
 DoIncludeScript("bindings.lua", nil)
 
+_G.flashlight_on = "0"
 function Spawn()
 	-- Registers a function to get called each time the entity updates, or "thinks"
 	thisEntity:SetContextThink(nil, MainThinkFunc, 0)
