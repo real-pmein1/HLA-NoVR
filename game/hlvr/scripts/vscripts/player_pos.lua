@@ -58,8 +58,8 @@ function MainThinkFunc()
 		end
 		if string.match(GetMapName(), "a2_headcrabs_tunnel") then
 			if ( xpos > 991 and xpos < 1072 ) and ( ypos > -2456 and ypos < -2375 ) then
-				SendToConsole("disable_flashlight")
-				if Entities:FindByName(nil, "player_flashlight") then SendToConsole("ent_remove player_flashlight") end
+				Entities:GetLocalPlayer():Attribute_SetIntValue("flashlight_on", 0) -- make sure the flashlight is turned off on the next map
+				_G.flashlight_on = "0"
 			elseif (xpos > 1107 and xpos < 1212 ) and ( ypos > -2424 and ypos < -2375 ) then
 				if Entities:GetLocalPlayer():Attribute_GetIntValue("flashlight_on", 0) == 0 then
 					SendToConsole("inv_flashlight")
