@@ -364,16 +364,17 @@ elseif (vlua.find(name, "monitor_dial_2")) then
             return 0
         end
     end, "Interacting", 0)
-elseif (vlua.find(name, "4910_135_interactive_wheel")) then -- FIX: sound plays on each completion_amount
+elseif (vlua.find(name, "4910_135_interactive_wheel")) then
     completion_amount = 0
-    SendToConsole("ent_fire 4910_135_interactive_wheel EnableReturnToCompletion")
+    SendToConsole("ent_fire 4910_135_interactive_wheel EnableReturnToCompletion; ent_fire 4910_135_interactive_wheel setreturntocompletionstyle 0")
     player:SetThink(function()
         if player:Attribute_GetIntValue("use_released", 0) == 1 then
             completion_amount = 0
+            SendToConsole("ent_fire 4910_135_interactive_wheel setreturntocompletionamount 0")
         else
-            completion_amount = completion_amount + 0.01
+            completion_amount = completion_amount + 1
             SendToConsole("ent_fire 4910_135_interactive_wheel setreturntocompletionamount " .. completion_amount)
-            return 0
+            return 0.79
         end
     end, "Interacting", 0)
 elseif map == "a2_hideout" and (name == "bell2" or name == "bell") then
