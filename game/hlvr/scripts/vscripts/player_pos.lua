@@ -81,5 +81,5 @@ function MainThinkFunc()
 		end
 	end
 	
-	return 0.5
+	return 0.2
 end
