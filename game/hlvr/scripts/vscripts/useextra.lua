@@ -56,7 +56,7 @@ if map == "a3_distillery" then
     end
 end
 
-if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "4910_135_interactive_wheel" and name ~= "bell" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
+if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "4910_135_interactive_wheel" and name ~= "bell" and name ~= "interactive_wheel2" and name ~= "interactive_wheel" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
     if vlua.find(name, "slide_train_door") and Entities:FindByClassnameNearest("phys_constraint", thisEntity:GetCenter(), 20) then
         return
     end
@@ -387,6 +387,32 @@ elseif map == "a2_hideout" and (name == "bell2" or name == "bell") then
             completion_amount = completion_amount + 0.5
             SendToConsole("ent_fire bell setreturntocompletionamount " .. completion_amount)
             return 0
+        end
+    end, "Interacting", 0)
+elseif (vlua.find(name, "interactive_wheel2")) then
+    completion_amount = 0
+    SendToConsole("ent_fire interactive_wheel2 EnableReturnToCompletion; ent_fire interactive_wheel2 setreturntocompletionstyle 0")
+    player:SetThink(function()
+        if player:Attribute_GetIntValue("use_released", 0) == 1 then
+            completion_amount = 0
+            SendToConsole("ent_fire interactive_wheel2 setreturntocompletionamount 0")
+        else
+            completion_amount = completion_amount + 1
+            SendToConsole("ent_fire interactive_wheel2 setreturntocompletionamount " .. completion_amount)
+            return 0.79 -- fastest return for this wheel
+        end
+    end, "Interacting", 0)
+elseif (vlua.find(name, "interactive_wheel")) then
+    completion_amount = 0
+    SendToConsole("ent_fire interactive_wheel EnableReturnToCompletion; ent_fire interactive_wheel setreturntocompletionstyle 0")
+    player:SetThink(function()
+        if player:Attribute_GetIntValue("use_released", 0) == 1 then
+            completion_amount = 0
+            SendToConsole("ent_fire interactive_wheel setreturntocompletionamount 0")
+        else
+            completion_amount = completion_amount + 1
+            SendToConsole("ent_fire interactive_wheel setreturntocompletionamount " .. completion_amount)
+            return 1.007 -- fastest return for this wheel
         end
     end, "Interacting", 0)
 end
