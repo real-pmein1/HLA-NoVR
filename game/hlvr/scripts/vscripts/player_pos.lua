@@ -65,6 +65,19 @@ function MainThinkFunc()
 					SendToConsole("inv_flashlight")
 				end
 			end
+		elseif string.match(GetMapName(), "a2_drainage") then
+			if (xpos > 1405 and xpos < 1477 ) and ( ypos > -1842 and ypos < -1794 ) then
+				Entities:GetLocalPlayer():Attribute_SetIntValue("flashlight_on", 0) -- make sure the flashlight is turned off on the next map
+				_G.flashlight_on = "0"
+			elseif ( xpos > 883 and xpos < 960 ) and ( ypos > -2600 and ypos < -2400 ) and ( zpos > 100 and zpos < 210 ) then
+				if Entities:GetLocalPlayer():Attribute_GetIntValue("flashlight_on", 0) == 0 then
+					SendToConsole("inv_flashlight")
+				end
+			elseif ( xpos > 1313 and xpos < 1362 ) and ( ypos > -1940 and ypos < -1838 ) then
+				if Entities:GetLocalPlayer():Attribute_GetIntValue("flashlight_on", 0) == 0 then
+					SendToConsole("inv_flashlight")
+				end
+			end
 		end
 	end
 	
