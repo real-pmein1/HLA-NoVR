@@ -1212,11 +1212,6 @@ if name == "@pod_shell" or name == "pod_insides" then
     end
 end
 
-if name == "traincar_01_hatch" and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
-    thisEntity:Attribute_SetIntValue("used", 1)
-    SendToConsole("ent_fire_output traincar_01_hackplug OnHackSuccess")
-end
-
 -- Combine fabricator
 if class == "prop_hlvr_crafting_station_console" then
     DoEntFireByInstanceHandle(thisEntity, "RunScriptFile", "crafting_station", 0, nil, nil)

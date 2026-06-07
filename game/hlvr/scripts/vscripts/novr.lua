@@ -276,7 +276,10 @@ if GlobalSys:CommandLineCheck("-novr") then
                             -- end
                         end
                         return
-                    end
+                    elseif name == "traincar_01_hackplug" and player:Attribute_GetIntValue("traincar_open", 0) == 0 then
+                        player:Attribute_SetIntValue("traincar_open", 1)
+                        SendToConsole("ent_fire traincar_01_hackplug BeginHack; ent_fire traincar_01_hackplug EndHack")
+					end
                 end
 
                 local ent = Entities:FindByClassnameNearest("info_hlvr_toner_port", traceTable.pos, 20)
