@@ -1811,8 +1811,10 @@ if GlobalSys:CommandLineCheck("-novr") then
                         ent = Entities:FindByName(nil, "15493_hint_mantle_delay")
                         ent:RedirectOutput("OnTrigger", "ShowCrouchJumpTutorial", ent)
 
-                        ent = Entities:FindByClassnameNearest("trigger_once", Vector(-746, -943, -92), 10)
-                        ent:Kill()
+                        if FLASHLIGHT ~= "" then -- MANUAL FLASHLIGHT ONLY
+                            ent = Entities:FindByClassnameNearest("trigger_once", Vector(-746, -943, -92), 10)
+                            ent:Kill()
+                        end
 
                         ent = Entities:FindByClassnameNearest("prop_door_rotating_physics", Vector(-807, -643, -80), 10)
                         DoEntFireByInstanceHandle(ent, "SetOpenDirection", "2", 0, nil, nil)
