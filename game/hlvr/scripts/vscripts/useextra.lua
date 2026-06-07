@@ -875,6 +875,25 @@ if map == "a2_train_yard" then
 end
 
 
+---------- a3_station_street ----------
+
+if map == "a3_station_street" then
+    if name == "elev_floor_1_call_button" then
+        SendToConsole("ent_fire_output 2_8127_elev_button_floor_1_call OnIn")
+        SendToConsole("snd_sos_start_soundevent Button_Basic.Press")
+    elseif name == "elev_floor_2_call_button" then
+        SendToConsole("ent_fire_output 2_8127_elev_button_floor_2_call OnPressed")
+        SendToConsole("snd_sos_start_soundevent Button_Basic.Press")
+    elseif name == "elev_floor_1_button" then
+        SendToConsole("ent_fire_output 2_8127_elev_button_floor_1 OnPressed")
+        SendToConsole("snd_sos_start_soundevent Button_Basic.Press")
+    elseif name == "elev_floor_2_button" then
+        SendToConsole("ent_fire_output 2_8127_elev_button_floor_2 OnPressed")
+        SendToConsole("snd_sos_start_soundevent Button_Basic.Press")
+    end
+end
+
+
 ---------- a3_hotel_lobby_basement ----------
 
 if map == "a3_hotel_lobby_basement" then
@@ -1157,16 +1176,6 @@ if class == "prop_dynamic" or "func_physical_button" then
             player:SetThink(function()
                 StartSoundEvent("HealthStation.Loop", player)
             end, "HealthChargeSoundLoop", 0.7)
-        end
-    elseif model == "models/props/alyx_hideout/button_plate.vmdl" or vlua.find(name, "2_8127_elev_button_floor_") then
-        SendToConsole("snd_sos_start_soundevent Button_Basic.Press")
-
-        SendToConsole("ent_fire 2_8127_elev_button_test_floor_" .. player:Attribute_GetIntValue("next_elevator_floor", 2) .. " Trigger")
-
-        if player:Attribute_GetIntValue("next_elevator_floor", 2) == 2 then
-            player:Attribute_SetIntValue("next_elevator_floor", 1)
-        else
-            player:Attribute_SetIntValue("next_elevator_floor", 2)
         end
     end
 end

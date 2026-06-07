@@ -988,11 +988,6 @@ if GlobalSys:CommandLineCheck("-novr") then
             end
         elseif GetMapName() == "a2_headcrabs_tunnel" and vlua.find(Entities:FindAllInSphere(Vector(354, -251, -62), 18), player) then
             ClimbLadder(22)
-        elseif GetMapName() == "a3_station_street" then
-            if vlua.find(Entities:FindAllInSphere(Vector(934, 1883, -135), 20), player) then
-                SendToConsole("ent_fire_output 2_8127_elev_button_floor_1_call OnIn")
-                SendToConsole("snd_sos_start_soundevent Button_Basic.Press")
-            end
         elseif GetMapName() == "a3_hotel_lobby_basement" then
             if vlua.find(Entities:FindAllInSphere(Vector(1059, -1475, 200), 20), player) then
                 if player:Attribute_GetIntValue("EnabledHotelLobbyPower", 0) == 1 then
@@ -1936,6 +1931,11 @@ if GlobalSys:CommandLineCheck("-novr") then
 
                             ent = Entities:FindByName(nil, "patrol_trigger_seq_cancel")
                             ent:SetOrigin(Vector(1834, -40, -488))
+
+                            ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="elev_floor_1_call_button", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props_combine/combine_consoles/combine_player_button.vmdl", ["origin"]="905.795044 1883.531128 -152.125000", ["angles"]="0.000000 180.000000 0.000000", ["modelscale"]=1})
+                            ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="elev_floor_2_call_button", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props_combine/combine_consoles/combine_player_button.vmdl", ["origin"]="905.750000 1883.531006 112.000000", ["angles"]="0.000000 180.000000 0.000000", ["modelscale"]=1})
+                            ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="elev_floor_1_button", ["parentname"]="2_8127_elev_base_ent", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props_combine/combine_consoles/combine_player_button.vmdl", ["origin"]="891.250000 1889.000000 -152.000000", ["angles"]="0.000000 0.000000 0.000000", ["modelscale"]=1})
+                            ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="elev_floor_2_button", ["parentname"]="2_8127_elev_base_ent", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props_combine/combine_consoles/combine_player_button.vmdl", ["origin"]="891.250000 1889.000000 -146.500000", ["angles"]="0.000000 0.000000 0.000000", ["modelscale"]=1})
                         end
                     elseif GetMapName() == "a3_hotel_lobby_basement" then
                         Entities:FindByName(nil, "power_stake_2_start"):Attribute_SetIntValue("used", 1)
