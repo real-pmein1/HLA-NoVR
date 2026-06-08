@@ -1193,7 +1193,7 @@ end
 
 -- Combine Elevator
 
-if name == "2_203_elev_button_floor_1" or name == "2_203_elevator_switch_box" then
+if name == "2_203_elev_button_floor_1" then
     SendToConsole("ent_fire_output 2_203_elev_button_floor_1_handpose OnHandPosed")
 end
 
