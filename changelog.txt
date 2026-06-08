@@ -5,7 +5,7 @@ Added player_pos script to all maps for in-game position-based triggers
 Added some new bindings
 Changed some default bindings
 Changed minimum FOV to 60 but force the main menu to 80
-Changed resin HUD counter to blue
+Changed resin HUD counter to flash blue then yellow
 Changed flashlight to be automatic by default, as per the normal game (set a key to FLASHLIGHT in bindings.lua to make it manually controlled)
 
 a1_intro_world
@@ -42,3 +42,30 @@ a2_hideout
 
 Changed the rollup door crank wheel to turn
 Changed the bell to pull and chime correctly
+
+a2_headcrabs_tunnel
+===================
+
+Changed flashlight pickup to support automatic flashlight functionality
+Changed flashlight messages depending on auto/manual
+
+a2_drainage
+===========
+
+Changed the rollup doors crank wheels to turn
+
+a2_train_yard
+=============
+
+Changed the traincar hatch to open using the multitool instead of using the hatch
+
+a3_station_street
+=================
+
+Changed the elevator buttons to work fully
+Changed the hotel window to auto-teleport/break/close
+
+a3_hotel_lobby_basement
+=======================
+
+Changed the elevator power puzzle to use all points correctly
