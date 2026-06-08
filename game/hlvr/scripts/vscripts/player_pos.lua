@@ -49,6 +49,12 @@ function MainThinkFunc()
 		elseif ( xpos > -1745 and xpos < -1710 ) and ( ypos > 324 and ypos < 327 ) and ( zpos > 140 and zpos < 143 ) then
 			SendToConsole("setpos_player 1 -1727.60 303.17 94.03")
 		end
+	elseif GetMapName() == "a3_station_street" then
+		if ( xpos > 1436 and xpos < 1462 ) and ( ypos > -1370 and ypos < -1366 ) then
+			SendToConsole("setpos_player 1 1449.94 -1393.25 160.53")
+			SendToConsole("ent_fire 2860_window_wedge break")
+			SendToConsole("ent_fire 2860_window_sliding1 wake")
+		end
 	end
 	
 	-- FLASHLIGHT
