@@ -1965,6 +1965,10 @@ if GlobalSys:CommandLineCheck("-novr") then
                             ent:RedirectOutput("OnEntitySpawned", "DisableBarnacleAmmoPickup", ent)
                         end
                     elseif GetMapName() == "a3_hotel_underground_pit" then
+                        if not loading_save_file then
+                            ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="2_203_elev_outer_handle", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props_combine/combine_lockers/combine_locker_doors.vmdl", ["origin"]="2239.421143 -1110.000000 -457.000000", ["angles"]="0.000000 90.000000 0.000000", ["modelscale"]=0.75, ["parentname"]="2_203_elev_base_ent"})
+                            ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="2_203_elev_inner_handle", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props_combine/combine_lockers/combine_locker_doors.vmdl", ["origin"]="2239.421143 -1112.500000 -456.000000", ["angles"]="0.000000 -90.000000 0.000000", ["modelscale"]=0.75, ["parentname"]="2_203_elev_base_ent"})
+                        end
                         ent = Entities:FindByClassnameNearest("prop_door_rotating_physics", Vector(2012, -1571, 408), 10)
                         DoEntFireByInstanceHandle(ent, "SetOpenDirection", "1", 0, nil, nil)
                     elseif GetMapName() == "a3_hotel_street" then

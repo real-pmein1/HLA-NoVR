@@ -10,11 +10,7 @@ local player = Entities:GetLocalPlayer()
 player:Attribute_SetIntValue("useextra_executed", 1)
 
 if vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 0 and thisEntity:Attribute_GetIntValue("player_in_combine_elevator", 0) == 1 then
-    local ent = Entities:FindByName(nil, "2_203_inside_elevator_button")
-    if ent then
-        DoEntFireByInstanceHandle(ent, "RunScriptFile", "useextra", 0, nil, nil)
-    end
-    ent = Entities:FindByName(nil, "inside_elevator_button")
+    local ent = Entities:FindByName(nil, "inside_elevator_button")
     if ent then
         DoEntFireByInstanceHandle(ent, "RunScriptFile", "useextra", 0, nil, nil)
     end
@@ -56,7 +52,7 @@ if map == "a3_distillery" then
     end
 end
 
-if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "4910_135_interactive_wheel" and name ~= "bell" and name ~= "interactive_wheel2" and name ~= "interactive_wheel" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
+if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "4910_135_interactive_wheel" and name ~= "bell" and name ~= "interactive_wheel2" and name ~= "interactive_wheel" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and name ~= "2_203_elev_anim_door" and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
     if vlua.find(name, "slide_train_door") and Entities:FindByClassnameNearest("phys_constraint", thisEntity:GetCenter(), 20) then
         return
     end
@@ -281,7 +277,7 @@ if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= 
             return 0
         end
     end, "AnimateCompletionValue", 0)
-elseif (name == "barricade_door_hook" and player:Attribute_GetIntValue("locked_jeff_in_freezer", 0) == 0) or (name == "589_panel_switch" and Entities:FindByName(nil, "589_path_11"):Attribute_GetIntValue("toner_path_powered", 0) == 1) or name == "5628_2901_barricade_door_hook" or name == "tc_door_control" or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 0 and thisEntity:GetVelocity() == Vector(0, 0, 0)) then
+elseif name ~= "2_203_elev_anim_door" and ((name == "barricade_door_hook" and player:Attribute_GetIntValue("locked_jeff_in_freezer", 0) == 0) or (name == "589_panel_switch" and Entities:FindByName(nil, "589_path_11"):Attribute_GetIntValue("toner_path_powered", 0) == 1) or name == "5628_2901_barricade_door_hook" or name == "tc_door_control" or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 0 and thisEntity:GetVelocity() == Vector(0, 0, 0))) then
     if thisEntity:Attribute_GetIntValue("used", 0) == 1 then
         if name == "barricade_door_hook" then
             thisEntity:StopThink("AnimateCompletionValue")
@@ -416,6 +412,29 @@ elseif (vlua.find(name, "interactive_wheel")) then
             return 1.007 -- fastest return for this wheel
         end
     end, "Interacting", 0)
+elseif name == "2_203_elev_outer_handle" or name == "2_203_elev_inner_handle" then
+    local ent = Entities:FindByName(nil, "2_203_elev_anim_door")
+    local count = 0
+    if ent:Attribute_GetIntValue("open", 0) == 1 then
+        DoEntFireByInstanceHandle(ent, "setreturntocompletionamount", "0", 0, nil, nil)
+        DoEntFireByInstanceHandle(ent, "setreturntocompletionstyle", "0", 0, nil, nil)
+        DoEntFireByInstanceHandle(ent, "enablereturntocompletion", "", 0, nil, nil)
+        ent:Attribute_SetIntValue("open", 0)
+    else
+        ent:SetThink(function()
+            DoEntFireByInstanceHandle(ent, "SetCompletionValue", "" .. count, 0, nil, nil)
+            count = count + 0.01
+            DoEntFireByInstanceHandle(ent, "DisableReturnToCompletion", "", 0, nil, nil)
+            if math.floor((count * 100 % 10)) == 5 then
+                SendToConsole("snd_sos_start_soundevent AnimDoor_Elevator_Combine.Tick") -- or .Grab
+            end
+            if count < 1 then
+                return 0
+            end
+            ent:Attribute_SetIntValue("open", 1)
+        end, "AnimateCompletionValue", 0)
+        ent:FireOutput("OnCompletionA_Forward", nil, nil, nil, 0)
+    end
 end
 
 if vlua.find(model, "doorhandle") then
@@ -1199,7 +1218,6 @@ end
 
 if name == "2_203_inside_elevator_button" then
     SendToConsole("ent_fire_output 2_203_elev_button_elevator_handpose OnHandPosed")
-    Entities:FindByName(nil, "2_203_elev_anim_door"):Attribute_SetIntValue("player_in_combine_elevator", 0)
 end
 
 if name == "inside_elevator_button" then
