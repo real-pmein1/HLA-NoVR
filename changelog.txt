@@ -69,3 +69,9 @@ a3_hotel_lobby_basement
 =======================
 
 Changed the elevator power puzzle to use all points correctly
+
+a3_hotel_underground_pit
+========================
+
+Changed the Combine elevator call button to only work on the button
+Changed the Combine elevator to use the handle instead of the door to open/close
