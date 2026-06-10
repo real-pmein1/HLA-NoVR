@@ -75,3 +75,9 @@ a3_hotel_underground_pit
 
 Changed the Combine elevator call button to only work on the button
 Changed the Combine elevator to use the handle instead of the door to open/close
+
+a3_hotel_interior_rooftop
+=========================
+
+Changed the "zombie party" window to open and crouch-jump teleport in instead of teleporting on USE
+Changed the circuit breaker to correctly pull and trigger the auto-flashlight (if used)
