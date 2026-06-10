@@ -89,6 +89,12 @@ function MainThinkFunc()
 					SendToConsole("inv_flashlight")
 				end
 			end
+		elseif string.match(GetMapName(), "a3_hotel_interior_rooftop") then
+			if ( xpos > 1855 and xpos < 1934 ) and ( ypos > -2528 and ypos < -2455 ) then
+				SendToConsole("disable_flashlight")
+				if Entities:FindByName(nil, "player_flashlight") then SendToConsole("ent_remove player_flashlight") end
+				_G.flashlight_on = "0"
+			end
 		end
 	end
 	

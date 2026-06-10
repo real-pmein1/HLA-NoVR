@@ -1445,7 +1445,17 @@ if class == "item_hlvr_combine_console_tank" then
 end
 
 if name == "room1_lights_circuitbreaker_switch" then
-    SendToConsole("ent_fire_output controlroom_circuitbreaker_relay ontrigger")
+    local ent = Entities:FindByName(nil, "room1_lights_circuitbreaker_switch")
+    if ent:Attribute_GetIntValue("gen_on", 1) == 1 then
+        DoEntFireByInstanceHandle(ent, "SetCompletionValue", "1", 0, nil, nil)
+        DoEntFireByInstanceHandle(ent, "EnableReturnToCompletion", "", 0, nil, nil)
+        ent:Attribute_SetIntValue("gen_on", 0)
+        if FLASHLIGHT == "" then
+            if Entities:GetLocalPlayer():Attribute_GetIntValue("flashlight_on", 0) == 0 then
+                SendToConsole("inv_flashlight")
+            end
+        end
+    end
 end
 
 if name == "plug_console_starter_lever" then
