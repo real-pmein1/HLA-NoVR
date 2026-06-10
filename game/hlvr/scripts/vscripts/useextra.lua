@@ -987,6 +987,15 @@ if map == "a3_hotel_lobby_basement" then
 end
 
 
+---------- a3_hotel_interior_rooftop ----------
+
+if map == "a3_hotel_interior_rooftop" then
+    if name == "window_sliding1" then
+        SendToConsole("ent_fire zombieparty_window_slideconstraint setoffset 1")
+    end
+end
+
+
 ---------- a3_c17_processing_plant ----------
 
 if name == "vent_door" then

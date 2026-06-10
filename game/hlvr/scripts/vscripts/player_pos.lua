@@ -55,6 +55,11 @@ function MainThinkFunc()
 			SendToConsole("ent_fire 2860_window_wedge break")
 			SendToConsole("ent_fire 2860_window_sliding1 wake")
 		end
+	elseif GetMapName() == "a3_hotel_interior_rooftop" then
+		if ( xpos > 753.8 and xpos < 765 ) and ( ypos > -1440 and ypos < -1407 ) then
+			SendToConsole("setpos_player 1 791.77 -1425.97 576.66")
+			SendToConsole("ent_fire zombieparty_window_slideconstraint setoffset 0")
+		end
 	end
 	
 	-- FLASHLIGHT
