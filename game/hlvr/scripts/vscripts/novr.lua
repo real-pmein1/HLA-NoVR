@@ -2023,7 +2023,9 @@ if GlobalSys:CommandLineCheck("-novr") then
 
                             SendToConsole("ent_fire vent_door DisablePickup")
 
+                            ent = Entities:FindByName(nil, "pallet_lever_unpowered")
                             if ent then
+                                SendToConsole("ent_fire pallet_lever_unpowered setreturntocompletionamount 1; ent_fire pallet_lever_unpowered enablereturntocompletion")
                             end
 
                             ent = Entities:FindByName(nil, "shack_path_6_port_1_enable")
@@ -2031,7 +2033,6 @@ if GlobalSys:CommandLineCheck("-novr") then
                             Entities:FindByName(nil, "shack_path_6_port_1"):Attribute_SetIntValue("used", 1)
                             Entities:FindByName(nil, "shack_path_1_port_1"):Attribute_SetIntValue("used", 1)
 
-                            SendToConsole("ent_fire pallet_move_linear SetMoveDistanceFromStart 115")
                         end
                     elseif GetMapName() == "a3_distillery" then
                         ent = Entities:FindByName(nil, "exit_counter")

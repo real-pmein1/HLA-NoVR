@@ -52,7 +52,7 @@ if map == "a3_distillery" then
     end
 end
 
-if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "4910_135_interactive_wheel" and name ~= "bell" and name ~= "interactive_wheel2" and name ~= "interactive_wheel" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and name ~= "2_203_elev_anim_door" and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
+if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "4910_135_interactive_wheel" and name ~= "bell" and name ~= "interactive_wheel2" and name ~= "interactive_wheel" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and name ~= "2_203_elev_anim_door" and name ~= "pallet_lever_unpowered" and name ~= "pallet_lever_vertical" and name ~= "pallet_lever" and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
     if vlua.find(name, "slide_train_door") and Entities:FindByClassnameNearest("phys_constraint", thisEntity:GetCenter(), 20) then
         return
     end
@@ -1499,13 +1499,8 @@ if name == "lift_button_box" then
         thisEntity:Attribute_SetIntValue("used", 1)
     end
 end
-
-if name == "pallet_lever_vertical" then
-    SendToConsole("ent_fire_output pallet_logic_phys_raise ontrigger")
-end
-
-if name == "pallet_lever" then
-    SendToConsole("ent_fire_output pallet_logic_extend ontrigger")
+if name == "pallet_lever_vertical" or name == "pallet_lever" then  --try and make better
+    SendToConsole("ent_fire !picker setreturntocompletionamount 0; ent_fire !picker enablereturntocompletion")
 end
 
 if class == "item_hlvr_headcrab_gland" then
