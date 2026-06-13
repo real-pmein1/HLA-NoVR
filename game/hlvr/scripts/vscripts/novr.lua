@@ -245,6 +245,7 @@ if GlobalSys:CommandLineCheck("-novr") then
                             player:SetThink(function()
                                 if count > 1 then
                                     DoEntFireByInstanceHandle(parent, "DeactivateMine", "", 0, nil, nil)
+                                    UnlockTripmineAchievement()
                                 else
                                     count = count + 0.5
                                     return 0.80
@@ -1991,7 +1992,6 @@ if GlobalSys:CommandLineCheck("-novr") then
 
                             ent = Entities:FindByName(nil, "167_18945_hint_multitool_on_tripmine_trigger_1")
                             ent:RedirectOutput("OnTrigger", "ShowCrouchJumpTutorial", ent)
-                            ent:RedirectOutput("OnTrigger", "UnlockTripmineAchievement", ent)
 
                             ent = Entities:FindByClassnameNearest("prop_door_rotating_physics", Vector(780, 1614, 336), 10)
                             ent:RedirectOutput("OnOpen", "ExplodeFirstDoorMine", ent)
