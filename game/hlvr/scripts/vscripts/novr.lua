@@ -1994,8 +1994,6 @@ if GlobalSys:CommandLineCheck("-novr") then
                             DoEntFireByInstanceHandle(ent, "SetOpenDirection", "" .. 2, 0, nil, nil)
                         end
                     elseif GetMapName() == "a3_c17_processing_plant" then
-                        SendToConsole("ent_fire item_hlvr_weapon_tripmine OnHackSuccessAnimationComplete")
-
                         if not loading_save_file then
                             -- Default Junction Rotations
                             Entities:FindByName(nil, "shack_path_3_junction_1"):Attribute_SetIntValue("junction_rotation", 3)
@@ -2009,13 +2007,8 @@ if GlobalSys:CommandLineCheck("-novr") then
 
                             SendToConsole("ent_fire vent_door DisablePickup")
 
-                            ent = Entities:FindByClassnameNearest("item_hlvr_weapon_tripmine", Vector(-896, -3768, 348), 10)
                             if ent then
-                                ent:Kill()
                             end
-
-                            ent = Entities:FindByClassnameNearest("trigger_once", Vector(-1456, -3960, 224), 10)
-                            ent:RedirectOutput("OnTrigger", "SetupMineRoom", ent)
 
                             ent = Entities:FindByName(nil, "shack_path_6_port_1_enable")
                             ent:RedirectOutput("OnTrigger", "EnableShackToner", ent)
@@ -2707,36 +2700,6 @@ if GlobalSys:CommandLineCheck("-novr") then
         ent:SetThink(function()
             ent:Attribute_SetIntValue("used", 0)
         end, "EnableStreetElevatorDoor", 10)
-    end
-
-    function SetupMineRoom()
-        local ent = Entities:FindByClassnameNearest("item_hlvr_weapon_tripmine", Vector(-1165, -3770, 158), 10)
-        if ent then
-            ent:Kill()
-        end
-
-        SendToConsole("ent_fire collidable_physics_prop Kill")
-
-        Entities:GetLocalPlayer():SetThink(function()
-            ent = Entities:FindByClassnameNearest("item_hlvr_weapon_tripmine", Vector(-1165, -3770, 158), 10)
-            if ent then
-                ent:SetAbsAngles(90, -166, 0)
-                ent:SetAbsOrigin(Vector(-1175, -3770, 135))
-            end
-
-
-            ent = Entities:FindByClassnameNearest("item_hlvr_weapon_tripmine", Vector(-1105.788, -4058.940, 164.177), 10)
-            if ent then
-                ent:SetAbsOrigin(Vector(-1105.788, -4058.940, 140))
-            end
-
-            ent = SpawnEntityFromTableSynchronous("prop_physics", {["model"]="models/props_c17/oildrum001_explosive.vmdl", ["origin"]="-1121 -3814 105"})
-
-            AddCollisionToPhysicsProps("prop_physics")
-            AddCollisionToPhysicsProps("prop_physics_override")
-
-            SendToConsole("ent_fire item_hlvr_weapon_tripmine OnHackSuccessAnimationComplete")
-        end, "SetupMineRoom", 0.1)
     end
 
     function EnableShackToner()
