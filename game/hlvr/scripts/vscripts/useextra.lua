@@ -1491,14 +1491,36 @@ if model == "models/props_combine/combine_consoles/combine_lever_switch.vmdl" th
 end
 
 if name == "lift_button_box" then
-    if thisEntity:Attribute_GetIntValue("used", 0) == 1 then
-        SendToConsole("ent_fire_output lift_button_down onin")
-        thisEntity:Attribute_SetIntValue("used", 0)
-    else
-        SendToConsole("ent_fire_output lift_button_up onin")
-        thisEntity:Attribute_SetIntValue("used", 1)
+    if _G.platform_help_shown == nil then
+        local ent = SpawnEntityFromTableSynchronous("game_text", {["effect"]=2, ["spawnflags"]=1, ["color"]="230 230 230", ["color2"]="0 0 0", ["fadein"]=0, ["fadeout"]=0.15, ["fxtime"]=0.25, ["holdtime"]=5, ["x"]=-1, ["y"]=0.6})
+        DoEntFireByInstanceHandle(ent, "SetText", "Hold [" .. INTERACT .. "] and press [" .. PRIMARY_ATTACK .. "] to raise the platform\nor [" .. SECONDARY_ATTACK .. "] to lower the platform", 0, nil, nil)
+        DoEntFireByInstanceHandle(ent, "Display", "", 0, nil, nil)
+        _G.platform_help_shown = "1"
     end
+
+    SendToConsole("bind " .. PRIMARY_ATTACK .. " +raise_platform")
+    SendToConsole("bind " .. SECONDARY_ATTACK .. " +lower_platform")
+    player:SetThink(function()
+        if player:Attribute_GetIntValue("use_released", 0) == 1 then
+            SendToConsole("bind " .. PRIMARY_ATTACK .. " \"+customattack;viewmodel_update\"")
+            SendToConsole("bind " .. SECONDARY_ATTACK .. " +customattack2")
+            local motion_enabled = 1
+            player:SetThink(function()
+                if motion_enabled == 1 then
+                    SendToConsole("ent_fire lift_button_box disablemotion")
+                    motion_enabled = 0
+                    return 0.01
+                else
+                    SendToConsole("ent_fire lift_button_box enablemotion")
+                    motion_enabled = 1
+                end
+            end, "Thinking", 0)
+        else
+            return 0
+        end
+    end, "Interacting", 0)
 end
+
 if name == "pallet_lever_vertical" or name == "pallet_lever" then  --try and make better
     SendToConsole("ent_fire !picker setreturntocompletionamount 0; ent_fire !picker enablereturntocompletion")
 end
