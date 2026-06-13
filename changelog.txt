@@ -3,10 +3,13 @@ General
 
 Added player_pos script to all maps for in-game position-based triggers
 Added some new bindings
+Added back in all removed tripmines
+Added raise/lower console commands for the scissor platforms
 Changed some default bindings
 Changed minimum FOV to 60 but force the main menu to 80
 Changed resin HUD counter to flash blue then yellow
 Changed flashlight to be automatic by default, as per the normal game (set a key to FLASHLIGHT in bindings.lua to make it manually controlled)
+Changed all tripmines to need to be disabled by the multitool
 
 a1_intro_world
 ==============
@@ -81,3 +84,20 @@ a3_hotel_interior_rooftop
 
 Changed the "zombie party" window to open and crouch-jump teleport in instead of teleporting on USE
 Changed the circuit breaker to correctly pull and trigger the auto-flashlight (if used)
+
+a3_hotel_street
+===============
+
+Added missing tripmines
+Changed the tripmine disablement coding
+Changed the tripmine trap door to open both ways once initially opened
+
+a3_c17_processing_plant
+=======================
+
+Changed the vent door's opening code
+Changed the scissor platform to raise/lower with mouse1/mouse2
+Changed the tripmine disablement coding
+Changed the Mine room back to original
+Changed the pallet levers to different coding (still WIP to make better)
+Changed the shack toner puzzle to correctly fire
