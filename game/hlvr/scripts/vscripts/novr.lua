@@ -293,6 +293,11 @@ if GlobalSys:CommandLineCheck("-novr") then
 					end
                 end
 
+                local ent = Entities:FindByNameNearest("shack_path_1_port_1", traceTable.pos, 10)
+                if ent then
+                    SendToConsole("ent_fire shack_path_1_port_1 disable") --onplugrotated doesn't work
+                end
+
                 local ent = Entities:FindByClassnameNearest("info_hlvr_toner_port", traceTable.pos, 20)
                 if ent then
                     DoEntFireByInstanceHandle(ent, "RunScriptFile", "multitool", 0, nil, nil)
@@ -2027,12 +2032,6 @@ if GlobalSys:CommandLineCheck("-novr") then
                             if ent then
                                 SendToConsole("ent_fire pallet_lever_unpowered setreturntocompletionamount 1; ent_fire pallet_lever_unpowered enablereturntocompletion")
                             end
-
-                            ent = Entities:FindByName(nil, "shack_path_6_port_1_enable")
-                            ent:RedirectOutput("OnTrigger", "EnableShackToner", ent)
-                            Entities:FindByName(nil, "shack_path_6_port_1"):Attribute_SetIntValue("used", 1)
-                            Entities:FindByName(nil, "shack_path_1_port_1"):Attribute_SetIntValue("used", 1)
-
                         end
                     elseif GetMapName() == "a3_distillery" then
                         ent = Entities:FindByName(nil, "exit_counter")
@@ -2717,10 +2716,6 @@ if GlobalSys:CommandLineCheck("-novr") then
         ent:SetThink(function()
             ent:Attribute_SetIntValue("used", 0)
         end, "EnableStreetElevatorDoor", 10)
-    end
-
-    function EnableShackToner()
-        Entities:FindByName(nil, "shack_path_6_port_1"):Attribute_SetIntValue("used", 0)
     end
 
     function LarrySeesGun()
