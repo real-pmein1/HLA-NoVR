@@ -240,7 +240,17 @@ if GlobalSys:CommandLineCheck("-novr") then
                         ent:Attribute_SetIntValue("used", 1)
                         DoEntFireByInstanceHandle(ent, "BeginHack", "", 0, nil, nil)
 
-                        if not vlua.find(name, "cshield") and not vlua.find(name, "switch_box") then
+                        if parent:GetClassname() == "item_hlvr_weapon_tripmine" then
+                            count = 0
+                            player:SetThink(function()
+                                if count > 1 then
+                                    DoEntFireByInstanceHandle(parent, "DeactivateMine", "", 0, nil, nil)
+                                else
+                                    count = count + 0.5
+                                    return 0.80
+                                end
+                            end, "Interacting", 0)
+                        elseif not vlua.find(name, "cshield") and not vlua.find(name, "switch_box") then
                             -- TODO: Re-enable hacking minigame when it's less buggy
                             -- if parent:GetModelName() == "models/props_combine/combine_lockers/combine_locker_doors.vmdl" then
                             --     player:SetThink(function()
