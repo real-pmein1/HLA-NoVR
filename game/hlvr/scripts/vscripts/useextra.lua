@@ -1017,11 +1017,7 @@ end
 ---------- a3_c17_processing_plant ----------
 
 if name == "vent_door" then
-    if thisEntity:Attribute_GetIntValue("toggle", 0) == 0 then
-        thisEntity:ApplyLocalAngularVelocityImpulse(Vector(0,0,-1000))
-    else
-        thisEntity:ApplyLocalAngularVelocityImpulse(Vector(0,0,1000))
-    end
+    SendToConsole("ent_fire vent_phys_hinge setmotortargetangle 1")
 end
 
 
