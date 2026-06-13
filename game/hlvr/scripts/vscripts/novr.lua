@@ -1133,6 +1133,22 @@ if GlobalSys:CommandLineCheck("-novr") then
         local player = Entities:GetLocalPlayer()
         player:Attribute_SetIntValue("use_released", 1)
     end, "", 0)
+	
+    Convars:RegisterCommand("+raise_platform", function()
+        SendToConsole("ent_fire_output lift_button_up onin")
+    end, "", 0)
+	
+    Convars:RegisterCommand("-raise_platform", function()
+        SendToConsole("ent_fire_output lift_button_up onout")
+    end, "", 0)
+	
+    Convars:RegisterCommand("+lower_platform", function()
+        SendToConsole("ent_fire_output lift_button_down onin")
+    end, "", 0)
+	
+    Convars:RegisterCommand("-lower_platform", function()
+        SendToConsole("ent_fire_output lift_button_down onout")
+    end, "", 0)
 
     if player_spawn_ev ~= nil then
         StopListeningToGameEvent(player_spawn_ev)
