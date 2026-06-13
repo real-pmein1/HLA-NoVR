@@ -996,6 +996,24 @@ if map == "a3_hotel_interior_rooftop" then
 end
 
 
+---------- a3_hotel_street ----------
+
+if map == "a3_hotel_street" then
+    if name == "167_18697_tripmine_trap_door_1" then
+        count = 0
+        player:SetThink(function()
+            if count > 1 then
+                ent = Entities:FindByName(nil, "167_18697_tripmine_trap_door_1")
+                DoEntFireByInstanceHandle(ent, "SetOpenDirection", "" .. 0, 0, nil, nil) 
+            else
+                count = count + 0.5
+                return 0.5
+            end
+        end, "Interacting", 0)
+    end
+end
+
+
 ---------- a3_c17_processing_plant ----------
 
 if name == "vent_door" then
