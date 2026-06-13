@@ -1993,8 +1993,6 @@ if GlobalSys:CommandLineCheck("-novr") then
                             ent = Entities:FindByName(nil, "167_18697_tripmine_trap_door_1")
                             DoEntFireByInstanceHandle(ent, "SetOpenDirection", "" .. 2, 0, nil, nil)
                         end
-                        if ent then
-                        end
                     elseif GetMapName() == "a3_c17_processing_plant" then
                         SendToConsole("ent_fire item_hlvr_weapon_tripmine OnHackSuccessAnimationComplete")
 
