@@ -1043,6 +1043,22 @@ if map == "a3_distillery" then
         SendToConsole("ent_fire_output 11578_2635_380_button_center_pusher OnIn")
     end
 
+    if name == "5628_2901_barricade_door_hook" then
+        local count = 0 + thisEntity:GetCycle()
+        thisEntity:SetThink(function()
+            DoEntFireByInstanceHandle(thisEntity, "SetCompletionValue", "" .. 0 + count, 0, nil, nil)
+            count = count - 0.01
+            if count >= 0.99 then
+                thisEntity:FireOutput("OnCompletionA_Backward", nil, nil, nil, 0)
+                return 0
+            elseif count <= 0 then
+                return nil
+            else
+                return 0
+            end
+        end, "AnimateCompletionValue", 0)
+    end
+
     if name == "intro_rollup_door" then
         SendToConsole("ent_fire_output intro_rollup_door OnCompletionA_Forward")
         SendToConsole("ent_fire door_xen_crust Break")
