@@ -1031,8 +1031,12 @@ if map == "a3_distillery" then
     end
 
     if name == "cellar_ladder" then
-        ClimbLadder(560)
-        SendToConsole("ent_fire cellar_ladder SetCompletionValue 1")
+        if player:Attribute_GetIntValue("cellar_ladder_down", 0) == 0 then
+            SendToConsole("ent_fire cellar_ladder Enable")
+            player:Attribute_SetIntValue("cellar_ladder_down", 1)
+        else
+            ClimbLadder(560)
+        end
     end
 
     if name == "11578_2635_380_button_center" then
