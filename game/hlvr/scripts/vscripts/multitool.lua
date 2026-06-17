@@ -649,6 +649,11 @@ if class == "info_hlvr_toner_port" and (thisEntity:Attribute_GetIntValue("used",
 
     if name == "freezer_toner_outlet_1" then
         thisEntity:Attribute_SetIntValue("disabled", 0)
+        SendToConsole("ent_fire freezer_toner_outlet_1 disable")
+    end
+
+    if name == "freezer_toner_outlet_2" then
+        SendToConsole("ent_fire freezer_toner_outlet_2 disable")
     end
 
     if thisEntity:Attribute_GetIntValue("redraw_toner", 0) == 0 then
