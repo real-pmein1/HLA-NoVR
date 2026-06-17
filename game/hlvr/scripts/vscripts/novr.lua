@@ -174,6 +174,19 @@ if GlobalSys:CommandLineCheck("-novr") then
         player:Attribute_SetIntValue("disable_unstuck", 0)
     end, nil)
 
+    Convars:RegisterCommand("notarget_jeff", function()
+		local player = Entities:GetLocalPlayer()
+		if player:Attribute_GetIntValue("notarget", 0) == 0 then
+			player:Attribute_SetIntValue("notarget", 1)
+			SendToConsole("ent_fire @blind_zombie setdeafstate 0;ent_fire @blind_zombie ignoreplayer 1;ent_fire @blind_zombie setsuppressmovement 0;hl_blind_zombie_attack_chance 0;hl_blind_zombie_cough_kill 0;hl_blind_zombie_sniff_time 0")
+			print("notarget Jeff ON")
+		else
+			player:Attribute_SetIntValue("notarget", 0)
+			SendToConsole("ent_fire @blind_zombie setdeafstate 0;ent_fire @blind_zombie ignoreplayer 0;ent_fire @blind_zombie setsuppressmovement 0;hl_blind_zombie_attack_chance 1;hl_blind_zombie_cough_kill 1;hl_blind_zombie_sniff_time 1")
+			print("notarget Jeff OFF")
+		end
+    end, "", 0)
+
     Convars:RegisterCommand("usemultitool", function()
         local viewmodel = Entities:FindByClassname(nil, "viewmodel")
         local player = Entities:GetLocalPlayer()
@@ -1277,6 +1290,7 @@ if GlobalSys:CommandLineCheck("-novr") then
             SendToConsole("bind " .. INTERACT .. " +useextra")
             SendToConsole("bind " .. JUMP .. " jumpfixed")
             SendToConsole("bind " .. NOCLIP .. " toggle_noclip")
+            SendToConsole("bind " .. NOTARGET .. " \"notarget;notarget_jeff\"")
             SendToConsole("bind " .. QUICK_SAVE .. " \"save quick;snd_sos_start_soundevent Instructor.StartLesson;ent_fire text_quicksave showmessage\"")
             SendToConsole("bind " .. QUICK_LOAD .. " \"vr_enable_fake_vr 0;vr_enable_fake_vr 0;load quick\"")
             SendToConsole("bind " .. MAIN_MENU .. " \"addon_play startup\"")
@@ -2351,6 +2365,7 @@ if GlobalSys:CommandLineCheck("-novr") then
         --SendToConsole("bind ".. MAIN_MENU        .." ".. keyBind)
         --SendToConsole("bind ".. PAUSE            .." ".. keyBind)
         SendToConsole("bind ".. NOCLIP           .." ".. keyBind)
+        SendToConsole("bind ".. NOTARGET         .." ".. keyBind)
         SendToConsole("bind ".. VIEWM_INSPECT    .." ".. keyBind)
         SendToConsole("bind ".. ZOOM             .." ".. keyBind)
         SendToConsole("bind ".. USE_HEALTHPEN    .." ".. keyBind)
