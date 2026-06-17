@@ -37,22 +37,12 @@ function IsCombineConsoleLocked()
 end
 
 if map == "a3_distillery" then
-    if vlua.find(name, "plug") then
-        if player:Attribute_GetIntValue("plug_lever", 0) == 0 then
-            return
-        elseif name == "11578_2420_181_antlion_plug_crank_a" and player:Attribute_GetIntValue("plug_lever", 0) ~= 2 then
-            return
-        elseif name == "11578_2420_183_antlion_plug_crank_a" and player:Attribute_GetIntValue("plug_lever", 0) ~= 3 then
-            return
-        elseif name == "antlion_plug_crank_c" and player:Attribute_GetIntValue("plug_lever", 0) ~= 4 then
-            return
-        end
-    elseif name == "barricade_door" and player:GetOrigin().x > 433 then
+    if name == "barricade_door" and player:GetOrigin().x > 433 then
         return
     end
 end
 
-if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "4910_135_interactive_wheel" and name ~= "bell" and name ~= "interactive_wheel2" and name ~= "interactive_wheel" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and name ~= "2_203_elev_anim_door" and name ~= "pallet_lever_unpowered" and name ~= "pallet_lever_vertical" and name ~= "pallet_lever" and name ~= "11478_6233_tutorial_wheel" and not (name == "intro_rollup_door" and map == "a3_distillery") and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
+if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "4910_135_interactive_wheel" and name ~= "bell" and name ~= "interactive_wheel2" and name ~= "interactive_wheel" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and name ~= "11578_2420_181_antlion_plug_crank_a" and name ~= "11578_2420_183_antlion_plug_crank_a" and name ~= "antlion_plug_crank_c" and name ~= "2_203_elev_anim_door" and name ~= "pallet_lever_unpowered" and name ~= "pallet_lever_vertical" and name ~= "pallet_lever" and name ~= "11478_6233_tutorial_wheel" and not (name == "intro_rollup_door" and map == "a3_distillery") and not (name == "plug_console_starter_lever" and map == "a3_distillery") and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
     if vlua.find(name, "slide_train_door") and Entities:FindByClassnameNearest("phys_constraint", thisEntity:GetCenter(), 20) then
         return
     end
@@ -1144,16 +1134,67 @@ if map == "a3_distillery" then
         SendToConsole("ent_fire_output 11479_2386_button_center_pusher onin")
     end
 
+    if name == "plug_console_starter_lever" then
+        SendToConsole("ent_fire plug_console_starter_lever enablereturntocompletion")
+        local count = 0 + thisEntity:GetCycle()
+        thisEntity:SetThink(function()
+            DoEntFireByInstanceHandle(thisEntity, "SetCompletionValue", "" .. 0 + count, 0, nil, nil)
+            count = count + 0.01
+            if count >= 1 then
+                thisEntity:FireOutput("OnCompletionB_Forward", nil, nil, nil, 0)
+                return nil
+            else
+                return 0
+            end
+        end, "AnimateCompletionValue", 0)
+    end
+
     if name == "11578_2420_181_antlion_plug_crank_a" then
         SendToConsole("ent_fire_output 11578_2420_181_antlion_plug_crank_a oncompletionc_forward")
+        SendToConsole("ent_fire 11578_2420_181_antlion_plug_crank_a enablereturntocompletion")
+        local count = 0 + thisEntity:GetCycle()
+        thisEntity:SetThink(function()
+            DoEntFireByInstanceHandle(thisEntity, "SetCompletionValue", "" .. 0 + count, 0, nil, nil)
+            count = count + 0.01
+            if count >= 1 then
+                thisEntity:FireOutput("OnCompletionC_Forward", nil, nil, nil, 0)
+                return nil
+            else
+                return 0
+            end
+        end, "AnimateCompletionValue", 0)
     end
 
     if name == "11578_2420_183_antlion_plug_crank_a" then
         SendToConsole("ent_fire_output 11578_2420_183_antlion_plug_crank_a oncompletionc_forward")
+        SendToConsole("ent_fire 11578_2420_183_antlion_plug_crank_a enablereturntocompletion")
+        local count = 0 + thisEntity:GetCycle()
+        thisEntity:SetThink(function()
+            DoEntFireByInstanceHandle(thisEntity, "SetCompletionValue", "" .. 0 + count, 0, nil, nil)
+            count = count + 0.01
+            if count >= 1 then
+                thisEntity:FireOutput("OnCompletionC_Forward", nil, nil, nil, 0)
+                return nil
+            else
+                return 0
+            end
+        end, "AnimateCompletionValue", 0)
     end
 
     if name == "antlion_plug_crank_c" then
         SendToConsole("ent_fire_output antlion_plug_crank_c oncompletionc_forward")
+        SendToConsole("ent_fire antlion_plug_crank_c enablereturntocompletion")
+        local count = 0 + thisEntity:GetCycle()
+        thisEntity:SetThink(function()
+            DoEntFireByInstanceHandle(thisEntity, "SetCompletionValue", "" .. 0 + count, 0, nil, nil)
+            count = count + 0.01
+            if count >= 1 then
+                thisEntity:FireOutput("OnCompletionC_Forward", nil, nil, nil, 0)
+                return nil
+            else
+                return 0
+            end
+        end, "AnimateCompletionValue", 0)
     end
 end
 
@@ -1548,7 +1589,7 @@ if name == "room1_lights_circuitbreaker_switch" then
     end
 end
 
-if name == "plug_console_starter_lever" then
+if name == "plug_console_starter_lever" and map ~= "a3_distillery" then
     if map == "a4_c17_tanker_yard" then
         if thisEntity:Attribute_GetIntValue("used", 0) == 1 then
             return
