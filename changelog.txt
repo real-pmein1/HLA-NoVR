@@ -101,3 +101,18 @@ Changed the tripmine disablement coding
 Changed the Mine room back to original
 Changed the pallet levers so they move correctly (platform bug exists on raise/lower, needs lateral move to release)
 Changed the shack toner puzzle to correctly fire
+
+a3_distillery
+=============
+
+Added a notarget for Jeff.  He can still hear and move; to restrict that change setdeafstate and suppressmovement to 1
+Added two missing ladder climbs
+Changed the end ladder's usable distance to be nearer to the ladder
+Changed the cellar ladder to drop on first use, then climb thereafter
+Changed the cellar door crank wheel to require holding USE and to drop close when not
+Changed the first barricade door hook logic
+Changed the Jeff rollup door to require a few "USEs" to break the Xen crust
+Changed the two toner ports to close after use
+Changed and fixed the trash compactor's lever and button for multi use and correct lever movement
+Changed the antlion plug controls to be more fluid
+Removed most of the cellar changes as they are unnecessary
