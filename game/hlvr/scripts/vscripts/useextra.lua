@@ -1041,6 +1041,15 @@ if map == "a3_distillery" then
 
     if name == "11578_2635_380_button_center" then
         SendToConsole("ent_fire_output 11578_2635_380_button_center_pusher OnIn")
+        count = 0
+        player:SetThink(function()
+            if count <= 23 then
+                SendToConsole("ent_fire tc_door_control enablereturntocompletion;ent_fire tc_door_control setreturntocompletionamount 1")
+                count = count + 0.1
+                return 0.1
+            end
+            player:Attribute_SetIntValue("tc_door_closed", 0)
+        end, "Interacting", 0)
     end
 
     if name == "5628_2901_barricade_door_hook" then
@@ -1090,7 +1099,26 @@ if map == "a3_distillery" then
     end
 
     if name == "tc_door_control" then
-        SendToConsole("ent_fire relay_close_compactor_doors Trigger")
+        count = 0
+        if player:Attribute_GetIntValue("tc_door_closed", 0) == 0 then
+            player:SetThink(function()
+                if count <= 1 then
+                    SendToConsole("ent_fire tc_door_control enablereturntocompletion;ent_fire tc_door_control setreturntocompletionamount 0")
+                    count = count + 0.1
+                    return 0.1
+                end
+                player:Attribute_SetIntValue("tc_door_closed", 1)
+            end, "Interacting", 0)
+        else
+            player:SetThink(function()
+                if count <= 1 then
+                    SendToConsole("ent_fire tc_door_control enablereturntocompletion;ent_fire tc_door_control setreturntocompletionamount 1")
+                    count = count + 0.1
+                    return 0.1
+                end
+                player:Attribute_SetIntValue("tc_door_closed", 0)
+            end, "Interacting", 0)
+        end
     end
 
     if name == "11478_6233_tutorial_wheel" then
