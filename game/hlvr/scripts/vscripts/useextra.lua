@@ -1128,6 +1128,7 @@ if map == "a3_distillery" then
 
     if name == "11479_2385_button_pusher_prop" then
         SendToConsole("ent_fire_output 11479_2385_button_center_pusher onin")
+        _G.distillery_elev_called = 1
     end
 
     if name == "11479_2386_button_pusher_prop" then
