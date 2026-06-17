@@ -2027,11 +2027,6 @@ if GlobalSys:CommandLineCheck("-novr") then
                             DoEntFireByInstanceHandle(ent, "ShowMessage", "", 0, nil, nil)
 
                             SendToConsole("ent_fire vent_door DisablePickup")
-
-                            ent = Entities:FindByName(nil, "pallet_lever_unpowered")
-                            if ent then
-                                SendToConsole("ent_fire pallet_lever_unpowered setreturntocompletionamount 1; ent_fire pallet_lever_unpowered enablereturntocompletion")
-                            end
                         end
                     elseif GetMapName() == "a3_distillery" then
                         ent = Entities:FindByName(nil, "exit_counter")

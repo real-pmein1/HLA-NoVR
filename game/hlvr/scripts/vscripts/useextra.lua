@@ -277,7 +277,7 @@ if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= 
             return 0
         end
     end, "AnimateCompletionValue", 0)
-elseif name ~= "2_203_elev_anim_door" and ((name == "barricade_door_hook" and player:Attribute_GetIntValue("locked_jeff_in_freezer", 0) == 0) or (name == "589_panel_switch" and Entities:FindByName(nil, "589_path_11"):Attribute_GetIntValue("toner_path_powered", 0) == 1) or name == "5628_2901_barricade_door_hook" or name == "tc_door_control" or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 0 and thisEntity:GetVelocity() == Vector(0, 0, 0))) then
+elseif name ~= "2_203_elev_anim_door" and name ~= "pallet_lever_unpowered" and name ~= "pallet_lever_vertical" and name ~= "pallet_lever" and ((name == "barricade_door_hook" and player:Attribute_GetIntValue("locked_jeff_in_freezer", 0) == 0) or (name == "589_panel_switch" and Entities:FindByName(nil, "589_path_11"):Attribute_GetIntValue("toner_path_powered", 0) == 1) or name == "5628_2901_barricade_door_hook" or name == "tc_door_control" or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 0 and thisEntity:GetVelocity() == Vector(0, 0, 0))) then
     if thisEntity:Attribute_GetIntValue("used", 0) == 1 then
         if name == "barricade_door_hook" then
             thisEntity:StopThink("AnimateCompletionValue")
@@ -1521,8 +1521,50 @@ if name == "lift_button_box" then
     end, "Interacting", 0)
 end
 
-if name == "pallet_lever_vertical" or name == "pallet_lever" then  --try and make better
-    SendToConsole("ent_fire !picker setreturntocompletionamount 0; ent_fire !picker enablereturntocompletion")
+if name == "pallet_lever_vertical" then -- BUG HERE! if the platform is fully raised or lowered, it needs to be moved laterally before it can raise/lower again
+    if player:Attribute_GetIntValue("proc_plant_pallet_lever_vertical_forward", 0) == 0 then
+        player:SetThink(function()
+            if player:Attribute_GetIntValue("use_released", 0) == 1 then
+                SendToConsole("ent_fire pallet_lever_vertical setreturntocompletionamount 0.5; ent_fire pallet_lever_vertical enablereturntocompletion")
+            else
+                SendToConsole("ent_fire pallet_lever_vertical setreturntocompletionamount 0; ent_fire pallet_lever_vertical enablereturntocompletion")
+                player:Attribute_SetIntValue("proc_plant_pallet_lever_vertical_forward", 1)
+                return 0
+            end
+        end, "Interacting", 0)
+    else
+        player:SetThink(function()
+            if player:Attribute_GetIntValue("use_released", 0) == 1 then
+                SendToConsole("ent_fire pallet_lever_vertical setreturntocompletionamount 0.5; ent_fire pallet_lever_vertical enablereturntocompletion")
+            else
+                SendToConsole("ent_fire pallet_lever_vertical setreturntocompletionamount 1; ent_fire pallet_lever_vertical enablereturntocompletion")
+                player:Attribute_SetIntValue("proc_plant_pallet_lever_vertical_forward", 0)
+                return 0
+            end
+        end, "Interacting", 0)
+    end
+elseif name == "pallet_lever" then
+    if player:Attribute_GetIntValue("proc_plant_pallet_lever_forward", 0) == 0 then
+        player:SetThink(function()
+            if player:Attribute_GetIntValue("use_released", 0) == 1 then
+                SendToConsole("ent_fire pallet_lever setreturntocompletionamount 0.5; ent_fire pallet_lever enablereturntocompletion")
+            else
+                SendToConsole("ent_fire pallet_lever setreturntocompletionamount 0; ent_fire pallet_lever enablereturntocompletion")
+                player:Attribute_SetIntValue("proc_plant_pallet_lever_forward", 1)
+                return 0
+            end
+        end, "Interacting", 0)
+    else
+        player:SetThink(function()
+            if player:Attribute_GetIntValue("use_released", 0) == 1 then
+                SendToConsole("ent_fire pallet_lever setreturntocompletionamount 0.5; ent_fire pallet_lever enablereturntocompletion")
+            else
+                SendToConsole("ent_fire pallet_lever setreturntocompletionamount 1; ent_fire pallet_lever enablereturntocompletion")
+                player:Attribute_SetIntValue("proc_plant_pallet_lever_forward", 0)
+                return 0
+            end
+        end, "Interacting", 0)
+    end
 end
 
 if class == "item_hlvr_headcrab_gland" then
