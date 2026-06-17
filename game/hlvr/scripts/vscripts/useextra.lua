@@ -52,7 +52,7 @@ if map == "a3_distillery" then
     end
 end
 
-if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "4910_135_interactive_wheel" and name ~= "bell" and name ~= "interactive_wheel2" and name ~= "interactive_wheel" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and name ~= "2_203_elev_anim_door" and name ~= "pallet_lever_unpowered" and name ~= "pallet_lever_vertical" and name ~= "pallet_lever" and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
+if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "4910_135_interactive_wheel" and name ~= "bell" and name ~= "interactive_wheel2" and name ~= "interactive_wheel" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and name ~= "2_203_elev_anim_door" and name ~= "pallet_lever_unpowered" and name ~= "pallet_lever_vertical" and name ~= "pallet_lever" and not (name == "intro_rollup_door" and map == "a3_distillery") and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
     if vlua.find(name, "slide_train_door") and Entities:FindByClassnameNearest("phys_constraint", thisEntity:GetCenter(), 20) then
         return
     end
@@ -1060,12 +1060,29 @@ if map == "a3_distillery" then
     end
 
     if name == "intro_rollup_door" then
-        SendToConsole("ent_fire_output intro_rollup_door OnCompletionA_Forward")
-        SendToConsole("ent_fire door_xen_crust Break")
-        SendToConsole("ent_fire relay_door_xen_crust_c Trigger")
-        SendToConsole("ent_fire relay_door_xen_crust_d Trigger")
-        SendToConsole("ent_fire relay_door_xen_crust_e Trigger")
-        SendToConsole("ent_fire @snd_music_bz_hello Kill")
+        SendToConsole("ent_fire intro_rollup_door enablereturntocompletion")
+        if player:Attribute_GetIntValue("door_xen_crust_broken", 0) == 0 then
+            SendToConsole("ent_fire door_xen_crust break")
+            SendToConsole("ent_fire door_xen_crust_cover break")
+            SendToConsole("ent_fire door_xen_crustpcrust_0 break")
+            SendToConsole("ent_fire door_xen_crustpcrust_1 break")
+            SendToConsole("ent_fire intro_rollup_door setreturntocompletionamount 0.005")
+            player:Attribute_SetIntValue("door_xen_crust_broken", 1)
+        elseif player:Attribute_GetIntValue("door_xen_crust_broken", 0) == 1 then
+            SendToConsole("ent_fire door_xen_crustpcrust_2 break")
+            SendToConsole("ent_fire door_xen_crustpcrust_3 break")
+            SendToConsole("ent_fire door_xen_crustpcrust_4 break")
+            SendToConsole("ent_fire door_xen_crustpcrust_5 break")
+            SendToConsole("ent_fire intro_rollup_door setreturntocompletionamount 0.01")
+            player:Attribute_SetIntValue("door_xen_crust_broken", 2)
+        elseif player:Attribute_GetIntValue("door_xen_crust_broken", 0) == 2 then
+            SendToConsole("ent_fire door_xen_crustpcrust_6 break")
+            SendToConsole("ent_fire door_xen_crustpcrust_7 break")
+            SendToConsole("ent_fire door_xen_crustpcrust_8 break")
+            SendToConsole("ent_fire door_xen_crustpcrust_9 break")
+            SendToConsole("ent_fire intro_rollup_door setreturntocompletionamount 1")
+            player:Attribute_SetIntValue("door_xen_crust_broken", 3)
+        end
     end
 
     if name == "barricade_door_hook" and player:Attribute_GetIntValue("locked_jeff_in_freezer", 0) == 1 then
