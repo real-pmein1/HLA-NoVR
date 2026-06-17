@@ -1083,6 +1083,10 @@ if GlobalSys:CommandLineCheck("-novr") then
                 ClimbLadder(180)
             end
 
+            if vlua.find(Entities:FindAllInSphere(Vector(-1464, -2740, 127), 15), player) then
+                ClimbLadder(180)
+            end
+
             if vlua.find(Entities:FindAllInSphere(Vector(-1393, -2493, 113), 10), player) then
                 ClimbLadder(425, Vector(0, 0, -1))
             end
@@ -1095,6 +1099,10 @@ if GlobalSys:CommandLineCheck("-novr") then
         elseif GetMapName() == "a3_distillery" then
             if vlua.find(Entities:FindAllInSphere(Vector(20, -496, 211), 10), player) then
                 ClimbLadder(462)
+            end
+
+            if vlua.find(Entities:FindAllInSphere(Vector(140, -210, 426), 20), player) then
+                ClimbLadder(440)
             end
 
             if vlua.find(Entities:FindAllInSphere(Vector(-24, -151, 426), 5), player) then
