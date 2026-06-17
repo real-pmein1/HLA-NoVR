@@ -99,5 +99,5 @@ Changed the vent door's opening code
 Changed the scissor platform to raise/lower with mouse1/mouse2
 Changed the tripmine disablement coding
 Changed the Mine room back to original
-Changed the pallet levers to different coding (still WIP to make better)
+Changed the pallet levers so they move correctly (platform bug exists on raise/lower, needs lateral move to release)
 Changed the shack toner puzzle to correctly fire
