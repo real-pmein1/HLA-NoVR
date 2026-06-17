@@ -1116,10 +1116,6 @@ if GlobalSys:CommandLineCheck("-novr") then
             if vlua.find(Entities:FindAllInSphere(Vector(525, 1595, 578), 10), player) then
                 ClimbLadder(690)
             end
-
-            if vlua.find(Entities:FindAllInSphere(Vector(925, 1102, 578), 10), player) then
-                SendToConsole("ent_fire_output 11578_2635_380_button_center_pusher OnIn")
-            end
         elseif GetMapName() == "a4_c17_tanker_yard" then
             if vlua.find(Entities:FindAllInSphere(Vector(6980, 2591, 13), 10), player) then
                 ClimbLadder(270)
