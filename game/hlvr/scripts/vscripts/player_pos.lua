@@ -1,6 +1,9 @@
 DoIncludeScript("bindings.lua", nil)
 
 _G.flashlight_on = "0"
+_G.distillery_elev_called = 0
+local distillery_elev_called_count = 0
+
 function Spawn()
 	-- Registers a function to get called each time the entity updates, or "thinks"
 	thisEntity:SetContextThink(nil, MainThinkFunc, 0)
@@ -94,6 +97,24 @@ function MainThinkFunc()
 				SendToConsole("disable_flashlight")
 				if Entities:FindByName(nil, "player_flashlight") then SendToConsole("ent_remove player_flashlight") end
 				_G.flashlight_on = "0"
+			end
+		elseif string.match(GetMapName(), "a3_distillery") then
+			if _G.distillery_elev_called == 1 then
+				if distillery_elev_called_count < 130 then
+					distillery_elev_called_count = distillery_elev_called_count + 1
+				elseif distillery_elev_called_count == 130 then
+					if _G.flashlight_on == "0" then
+						SendToConsole("inv_flashlight")
+						_G.flashlight_on = "1"
+					end
+					distillery_elev_called_count = 131
+				end
+			end
+			if ( xpos > 150 and xpos < 430 ) and ( ypos > 1080 and ypos < 1500 ) and ( zpos > 250 and zpos < 400 ) then
+				if _G.flashlight_on == "0" then
+					SendToConsole("inv_flashlight")
+					_G.flashlight_on = "1"
+				end
 			end
 		end
 	end

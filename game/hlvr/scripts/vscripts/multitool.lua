@@ -623,6 +623,11 @@ function ToggleTonerJunction()
 
             if toner_path_name == "toner_path_1" and map ~= "a3_hotel_street" or (toner_path_name == "freezer_toner_path_1") or (toner_path_name == "freezer_toner_path_7" and player:Attribute_GetIntValue("circuit_" .. map .. "_freezer_toner_junction_1_completed", 0) == 1) or toner_path_name == "5325_4704_train_gate_path_start" or toner_path_name == "shack_path_6" or toner_path_name == "shack_path_1" or toner_path_name == "path_health_trap_1" or toner_path_name == "589_path_1" or (toner_path_name == "589_path_4" and Entities:FindByName(nil, "589_path_2"):Attribute_GetIntValue("toner_path_powered", 0) == 1) or (toner_path_name == "589_path_7" and Entities:FindByName(nil, "589_path_6"):Attribute_GetIntValue("toner_path_powered", 0) == 1) or (toner_path_name == "589_path_a" and Entities:FindByName(nil, "589_path_9"):Attribute_GetIntValue("toner_path_powered", 0) == 1) or (toner_path_name == "589_path_11" and Entities:FindByName(nil, "589_path_12"):Attribute_GetIntValue("toner_path_powered", 0) == 1) or (map == "a4_c17_parking_garage" and (toner_path_name == "toner_path_3" and Entities:FindByName(nil, "toner_path_2"):Attribute_GetIntValue("toner_path_powered", 0) == 1 or toner_path_name == "toner_path_7" and Entities:FindByName(nil, "toner_path_5"):Attribute_GetIntValue("toner_path_powered", 0) == 1)) or toner_path_name == "1489_4074_path_demux_0" then
                 Entities:FindByName(nil, toner_path_name):Attribute_SetIntValue("toner_path_powered", 1)
+                if toner_path_name == "freezer_toner_path_7" and player:Attribute_GetIntValue("circuit_" .. map .. "_freezer_toner_junction_1_completed", 0) == 1 then
+                    SendToConsole("disable_flashlight")
+                    if Entities:FindByName(nil, "player_flashlight") then SendToConsole("ent_remove player_flashlight") end
+                    _G.flashlight_on = "0"
+                end
             end
 
             if map == "a3_hotel_lobby_basement" and toner_path_name == "toner_path_7" and player:Attribute_GetIntValue("circuit_" .. map .. "_junction_1_completed", 0) == 1 then
