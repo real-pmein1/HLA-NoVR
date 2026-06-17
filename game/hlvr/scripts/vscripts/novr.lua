@@ -2616,10 +2616,6 @@ if GlobalSys:CommandLineCheck("-novr") then
     end
 
     function FixJeffBatteryPuzzle()
-        SendToConsole("ent_fire @barnacle_battery kill")
-        SendToConsole("ent_create item_hlvr_prop_battery { origin \"959 1970 427\" }")
-        SendToConsole("ent_fire @crank_battery kill")
-        SendToConsole("ent_create item_hlvr_prop_battery { origin \"1325 2245 435\" }")
         SendToConsole("ent_fire @relay_installcrank Trigger")
     end
 
