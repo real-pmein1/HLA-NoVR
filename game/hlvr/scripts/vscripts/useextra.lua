@@ -72,7 +72,7 @@ if not vlua.find(model, "doorhandle") and name ~= "greenhouse_door" and name ~= 
                     return 0
                 end
             end, "Interacting", 0)
-            SendToConsole("ent_fire traincar_01_hackplug Alpha 0")
+            SendToConsole("ent_fire traincar_01_hackplug Alpha 255")
         elseif map == "a3_distillery" and name == "verticaldoor_wheel" then
             count = 0
             player:SetThink(function()
