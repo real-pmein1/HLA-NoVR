@@ -363,7 +363,7 @@ elseif (vlua.find(name, "4910_135_interactive_wheel")) then
             return 0.79
         end
     end, "Interacting", 0)
-elseif map == "a2_hideout" and (name == "bell2" or name == "bell") then
+elseif map == "a2_hideout" and name == "bell2" then
     count = 0
     completion_amount = -0.5
     player:SetThink(function()
