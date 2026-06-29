@@ -40,6 +40,7 @@ function MainThinkFunc()
 				local ent = SpawnEntityFromTableSynchronous("game_text", {["effect"]=2, ["spawnflags"]=1, ["color"]="230 230 230", ["color2"]="0 0 0", ["fadein"]=0, ["fadeout"]=0.15, ["fxtime"]=0.25, ["holdtime"]=5, ["x"]=-1, ["y"]=0.6})
 				DoEntFireByInstanceHandle(ent, "SetText", "Press [" .. INTERACT .. "] to open the vent\n\nPress [" .. CROUCH .. "] and [" .. JUMP .. "] to get into the vent", 0, nil, nil)
 				DoEntFireByInstanceHandle(ent, "Display", "", 0, nil, nil)
+                SendToConsole("snd_sos_start_soundevent Instructor.StartLesson")
 				_G.end_vent_shown = "1"
 			end
 		elseif ( xpos > 562 and xpos < 655 ) and ( ypos > -2359 and ypos < -2310 ) then
@@ -69,6 +70,7 @@ function MainThinkFunc()
 				local ent = SpawnEntityFromTableSynchronous("game_text", {["effect"]=2, ["spawnflags"]=1, ["color"]="230 230 230", ["color2"]="0 0 0", ["fadein"]=0, ["fadeout"]=0.15, ["fxtime"]=0.25, ["holdtime"]=5, ["x"]=-1, ["y"]=0.6})
 				DoEntFireByInstanceHandle(ent, "SetText", "Hold [" .. COVER_MOUTH .. "] to Cover Mouth", 0, nil, nil)
 				DoEntFireByInstanceHandle(ent, "Display", "", 0, nil, nil)
+                SendToConsole("snd_sos_start_soundevent Instructor.StartLesson")
 				_G.hold_mouth_shown = "1"
 			end
 		end
