@@ -1161,7 +1161,6 @@ if map == "a3_distillery" then
     end
 
     if name == "11578_2420_181_antlion_plug_crank_a" then
-        SendToConsole("ent_fire_output 11578_2420_181_antlion_plug_crank_a oncompletionc_forward")
         SendToConsole("ent_fire 11578_2420_181_antlion_plug_crank_a enablereturntocompletion")
         local count = 0 + thisEntity:GetCycle()
         thisEntity:SetThink(function()
@@ -1177,7 +1176,6 @@ if map == "a3_distillery" then
     end
 
     if name == "11578_2420_183_antlion_plug_crank_a" then
-        SendToConsole("ent_fire_output 11578_2420_183_antlion_plug_crank_a oncompletionc_forward")
         SendToConsole("ent_fire 11578_2420_183_antlion_plug_crank_a enablereturntocompletion")
         local count = 0 + thisEntity:GetCycle()
         thisEntity:SetThink(function()
@@ -1193,7 +1191,6 @@ if map == "a3_distillery" then
     end
 
     if name == "antlion_plug_crank_c" then
-        SendToConsole("ent_fire_output antlion_plug_crank_c oncompletionc_forward")
         SendToConsole("ent_fire antlion_plug_crank_c enablereturntocompletion")
         local count = 0 + thisEntity:GetCycle()
         thisEntity:SetThink(function()
