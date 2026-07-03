@@ -37,7 +37,17 @@ function IsCombineConsoleLocked()
 end
 
 if map == "a3_distillery" then
-    if name == "barricade_door" and player:GetOrigin().x > 433 then
+    if vlua.find(name, "plug") then
+        if player:Attribute_GetIntValue("plug_lever", 0) == 0 then
+            return
+        elseif name == "11578_2420_181_antlion_plug_crank_a" and player:Attribute_GetIntValue("plug_lever", 0) ~= 2 then
+            return
+        elseif name == "11578_2420_183_antlion_plug_crank_a" and player:Attribute_GetIntValue("plug_lever", 0) ~= 3 then
+            return
+        elseif name == "antlion_plug_crank_c" and player:Attribute_GetIntValue("plug_lever", 0) ~= 4 then
+            return
+        end
+    elseif name == "barricade_door" and player:GetOrigin().x > 433 then
         return
     end
 end
