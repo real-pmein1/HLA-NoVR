@@ -133,6 +133,26 @@ function MainThinkFunc()
 					_G.flashlight_on = "1"
 				end
 			end
+		elseif string.match(GetMapName(), "a4_c17_zoo") then
+			if ( xpos > 7582 and xpos < 7720 ) and ( ypos > -3810 and ypos < -3380 ) then
+				if _G.flashlight_on == "0" then
+					SendToConsole("inv_flashlight")
+					_G.flashlight_on = "1"
+				end
+			elseif ( xpos > 7274 and xpos < 7533 ) and ( ypos > -3772 and ypos < -3619 ) then
+				SendToConsole("disable_flashlight")
+				if Entities:FindByName(nil, "player_flashlight") then SendToConsole("ent_remove player_flashlight") end
+				_G.flashlight_on = "0"
+			elseif ( xpos > 4940 and xpos < 5033 ) and ( ypos > -1946 and ypos < -1739 ) then
+				if _G.flashlight_on == "0" then
+					SendToConsole("inv_flashlight")
+					_G.flashlight_on = "1"
+				end
+			elseif ( xpos > 5071 and xpos < 5161 ) and ( ypos > -1843 and ypos < -1714 ) then
+				SendToConsole("disable_flashlight")
+				if Entities:FindByName(nil, "player_flashlight") then SendToConsole("ent_remove player_flashlight") end
+				_G.flashlight_on = "0"
+			end
 		end
 	end
 	
