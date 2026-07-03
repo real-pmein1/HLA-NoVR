@@ -1209,8 +1209,25 @@ end
 
 ---------- a4_c17_zoo ----------
 
-if map == "a4_c17_zoo" and model == "models/props/industrial_door_1_40_92_white_temp.vmdl" and thisEntity:GetOrigin() == Vector(7218, 2044, -128) then
-    player:Attribute_SetIntValue("circuit_" .. map .. "_junction_health_trap_2_completed", 1)
+if map == "a4_c17_zoo" then
+	if model == "models/props/industrial_door_1_40_92_white_temp.vmdl" and thisEntity:GetOrigin() == Vector(7218, 2044, -128) then
+		player:Attribute_SetIntValue("circuit_" .. map .. "_junction_health_trap_2_completed", 1)
+	end
+	
+	if name == "door_reset" then
+		SendToConsole("ent_fire door_reset enablereturntocompletion")
+		local count = 0 + thisEntity:GetCycle()
+		thisEntity:SetThink(function()
+			DoEntFireByInstanceHandle(thisEntity, "SetCompletionValue", "" .. 0 + count, 0, nil, nil)
+			count = count + 0.01
+			if count >= 1 then
+				thisEntity:FireOutput("OnCompletionA_Forward", nil, nil, nil, 0)
+				return nil
+			else
+				return 0
+			end
+		end, "AnimateCompletionValue", 0)
+	end
 end
 
 
