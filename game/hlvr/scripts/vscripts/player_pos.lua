@@ -117,14 +117,14 @@ function MainThinkFunc()
 			end
 		elseif string.match(GetMapName(), "a3_distillery") then
 			if _G.distillery_elev_called == 1 then
-				if distillery_elev_called_count < 130 then
+				if distillery_elev_called_count < 260 then
 					distillery_elev_called_count = distillery_elev_called_count + 1
-				elseif distillery_elev_called_count == 130 then
+				elseif distillery_elev_called_count == 260 then
 					if _G.flashlight_on == "0" then
 						SendToConsole("inv_flashlight")
 						_G.flashlight_on = "1"
 					end
-					distillery_elev_called_count = 131
+					distillery_elev_called_count = 261
 				end
 			end
 			if ( xpos > 150 and xpos < 430 ) and ( ypos > 1080 and ypos < 1500 ) and ( zpos > 250 and zpos < 400 ) then
