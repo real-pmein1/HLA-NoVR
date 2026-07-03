@@ -2542,9 +2542,6 @@ if GlobalSys:CommandLineCheck("-novr") then
     end
 
     function CrouchThroughZooHole(a, b)
-        SendToConsole("fadein 0.2")
-        SendToConsole("setpos 5393 -1960 -125")
-
         local ent = Entities:FindByClassnameNearest("prop_physics", Vector(5126, -1957, -53), 10)
         DoEntFireByInstanceHandle(ent, "DisablePickup", "", 0, nil, nil)
         ent:SetEntityName("tiger_mask")

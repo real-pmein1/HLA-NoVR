@@ -74,6 +74,12 @@ function MainThinkFunc()
 				_G.hold_mouth_shown = "1"
 			end
 		end
+	elseif GetMapName() == "a4_c17_zoo" then
+		if ( xpos > 5377 and xpos < 5414 ) and ( ypos > -1870 and ypos < -1868 ) and ( zpos > -90 and zpos < -80 ) then
+			SendToConsole("setpos_player 1 5395.52 -1920.89 -115")
+        elseif ( xpos > 5385 and xpos < 5405 ) and ( ypos > -1898 and ypos < -1888 ) and ( zpos > -90 and zpos < -85 ) then
+			SendToConsole("setpos_player 1 5403.25 -1851.70 -115")
+		end
 	end
 	
 	-- FLASHLIGHT
