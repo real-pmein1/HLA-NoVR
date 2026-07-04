@@ -656,6 +656,12 @@ if class == "info_hlvr_toner_port" and (thisEntity:Attribute_GetIntValue("used",
         SendToConsole("ent_fire freezer_toner_outlet_2 disable")
     end
 
+    if map == "a4_c17_zoo" then
+        if name == "589_toner_port_2" then
+            SendToConsole("ent_fire 589_toner_port_2 disable;ent_fire 589_toner_port_2 enable")
+        end
+    end
+
     if thisEntity:Attribute_GetIntValue("redraw_toner", 0) == 0 then
         if map == "a4_c17_parking_garage" then
             if name == "toner_port" then
