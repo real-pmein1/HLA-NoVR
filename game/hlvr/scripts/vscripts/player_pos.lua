@@ -153,6 +153,17 @@ function MainThinkFunc()
 				if Entities:FindByName(nil, "player_flashlight") then SendToConsole("ent_remove player_flashlight") end
 				_G.flashlight_on = "0"
 			end
+		elseif string.match(GetMapName(), "a4_c17_tanker_yard") then
+			if ( xpos > 6015 and xpos < 6073 ) and ( ypos > 3892 and ypos < 4044 ) and ( zpos > 380 and zpos < 430 ) then
+				if _G.flashlight_on == "0" then
+					SendToConsole("inv_flashlight")
+					_G.flashlight_on = "1"
+				end
+			elseif ( xpos > 6124 and xpos < 6180 ) and ( ypos > 4171 and ypos < 4240 ) then
+				SendToConsole("disable_flashlight")
+				if Entities:FindByName(nil, "player_flashlight") then SendToConsole("ent_remove player_flashlight") end
+				_G.flashlight_on = "0"
+			end
 		end
 	end
 	
