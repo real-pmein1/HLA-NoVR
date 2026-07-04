@@ -2152,22 +2152,11 @@ if GlobalSys:CommandLineCheck("-novr") then
                                 ent = Entities:FindByName(nil, "eavesdrop_mystery")
                                 ent:RedirectOutput("OnTrigger2", "StopRevealEavesdrop", ent)
 
-                                ent = Entities:FindByName(nil, "elevator_path_1")
-                                ent:RedirectOutput("OnPass", "EnableToiletElevatorLever", ent)
 
-                                ent = Entities:FindByName(nil, "elev_trigger_player_inside")
-                                ent:SetOrigin(ent:GetOrigin() + Vector(0,0,50))
-                                ent = Entities:FindByName(nil, "elev_trigger_player_inside_outer_trigger")
-                                ent:SetOrigin(ent:GetOrigin() + Vector(0,0,50))
 
-                                ent = Entities:FindByName(nil, "waste_vial_template_1")
-                                ent:RedirectOutput("OnEntitySpawned", "DisableBarnacleHealthVialPickup", ent)
 
-                                ent = Entities:FindByName(nil, "antlion_tanker_spitter_01")
-                                ent:SetAbsOrigin(Vector(3310.622, 6371.935, 100))
 
                                 SendToConsole("ent_fire @prop_phys_portaloo_door DisablePickup")
-                                SendToConsole("ent_fire elev_exit_teleport_clip Kill")
                             end
                         elseif GetMapName() == "a4_c17_water_tower" then
                             if not loading_save_file then
