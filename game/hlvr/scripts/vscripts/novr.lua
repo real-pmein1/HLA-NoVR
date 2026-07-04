@@ -2126,16 +2126,6 @@ if GlobalSys:CommandLineCheck("-novr") then
 
                             ent = Entities:FindByName(nil, "relay_power_receive")
                             ent:RedirectOutput("OnTrigger", "MakeLeverUsable", ent)
-
-                            ent = Entities:FindByClassnameNearest("trigger_multiple", Vector(5380, -1848, -117), 10)
-                            ent:RedirectOutput("OnStartTouch", "CrouchThroughZooHole", ent)
-
-                            SendToConsole("ent_fire port_health_trap Disable")
-                            SendToConsole("ent_fire health_trap_locked_door Unlock")
-                            SendToConsole("ent_fire 589_toner_port_5 Disable")
-                            SendToConsole("ent_fire @prop_phys_portaloo_door DisablePickup")
-
-                            SendToConsole("ent_fire item_hlvr_weapon_tripmine OnHackSuccessAnimationComplete")
                         elseif GetMapName() == "a4_c17_tanker_yard" then
                             SendToConsole("ent_fire elev_hurt_player_* Kill")
 
@@ -2539,12 +2529,6 @@ if GlobalSys:CommandLineCheck("-novr") then
     function MakeLeverUsable(a, b)
         ent = Entities:FindByName(nil, "door_reset")
         ent:Attribute_SetIntValue("used", 0)
-    end
-
-    function CrouchThroughZooHole(a, b)
-        local ent = Entities:FindByClassnameNearest("prop_physics", Vector(5126, -1957, -53), 10)
-        DoEntFireByInstanceHandle(ent, "DisablePickup", "", 0, nil, nil)
-        ent:SetEntityName("tiger_mask")
     end
 
     function PlayLockedDoorHandleAnimation(a, b)
