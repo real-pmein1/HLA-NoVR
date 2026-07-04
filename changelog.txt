@@ -115,4 +115,21 @@ Changed the Jeff rollup door to require a few "USEs" to break the Xen crust
 Changed the two toner ports to close after use
 Changed and fixed the trash compactor's lever and button for multi use and correct lever movement
 Changed the antlion plug controls to be more fluid
+Changed the cover mouth tutorial to be earlier
+Changed the vodka counting so it plays the correct audio in the Zoo, but might not be necessary
 Removed most of the cellar changes as they are unnecessary
+
+a4_c17_zoo
+==========
+
+Changed the tunnel teleport slightly and added a return
+Changed the gate lever to be movable if unpowered
+Changed a toner port to close when used
+Removed some unnecessary changes
+
+a4_c17_tanker_yard
+==================
+
+Changed the portaloo lever to require holding USE
+Changed the bridge crank to require holding USE
+Removed some unnecessary changes
