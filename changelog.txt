@@ -133,3 +133,9 @@ a4_c17_tanker_yard
 Changed the portaloo lever to require holding USE
 Changed the bridge crank to require holding USE
 Removed some unnecessary changes
+
+a4_c17_water_tower
+==================
+
+Changed the pipe crane to move right/left with mouse1/mouse2
+Changed the vertical pallet levers to work correctly
