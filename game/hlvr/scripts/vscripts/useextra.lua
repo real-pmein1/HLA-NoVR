@@ -52,7 +52,7 @@ if map == "a3_distillery" then
     end
 end
 
-if not vlua.find(model, "doorhandle") and name ~= "bridge_crank" and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "4910_135_interactive_wheel" and name ~= "bell" and name ~= "interactive_wheel2" and name ~= "interactive_wheel" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and name ~= "11578_2420_181_antlion_plug_crank_a" and name ~= "11578_2420_183_antlion_plug_crank_a" and name ~= "antlion_plug_crank_c" and name ~= "2_203_elev_anim_door" and name ~= "pallet_lever_unpowered" and name ~= "pallet_lever_vertical" and name ~= "pallet_lever" and name ~= "11478_6233_tutorial_wheel" and not (name == "intro_rollup_door" and map == "a3_distillery") and not (name == "plug_console_starter_lever" and map == "a3_distillery") and not (name == "plug_console_starter_lever" and map == "a4_c17_tanker_yard") and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_zoo" and name == "door_reset") and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
+if not vlua.find(model, "doorhandle") and name ~= "bridge_crank" and name ~= "greenhouse_door" and name ~= "russell_entry_window" and name ~= "4910_135_interactive_wheel" and name ~= "bell" and name ~= "interactive_wheel2" and name ~= "interactive_wheel" and name ~= "larry_ladder" and name ~= "@pod_shell" and name ~= "589_panel_switch" and name ~= "tc_door_control" and name ~= "11578_2420_181_antlion_plug_crank_a" and name ~= "11578_2420_183_antlion_plug_crank_a" and name ~= "antlion_plug_crank_c" and name ~= "2_203_elev_anim_door" and name ~= "pallet_lever_unpowered" and name ~= "pallet_lever_vertical" and name ~= "pallet_lever" and name ~= "11478_6233_tutorial_wheel" and not (name == "intro_rollup_door" and map == "a3_distillery") and not (name == "plug_console_starter_lever" and map == "a3_distillery") and not (name == "plug_console_starter_lever" and map == "a4_c17_tanker_yard") and (class == "item_health_station_charger" or (class == "prop_animinteractable" and (not vlua.find(name, "elev_anim_door") or (vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 1 and thisEntity:GetVelocity() == Vector(0, 0, 0))) and not vlua.find(name, "5628_2901_barricade_door")) or (class == "item_hlvr_combine_console_rack" and IsCombineConsoleLocked() == false)) and not (map == "a4_c17_zoo" and name == "door_reset") and not (map == "a4_c17_water_tower" and model == "models/props_subway/scenes/desk_lever.vmdl") and not (map == "a4_c17_parking_garage" and name == "door_reset" and player:Attribute_GetIntValue("circuit_" .. map .. "_toner_junction_5_completed", 0) == 0) and thisEntity:Attribute_GetIntValue("used", 0) == 0 then
     if vlua.find(name, "slide_train_door") and Entities:FindByClassnameNearest("phys_constraint", thisEntity:GetCenter(), 20) then
         return
     end
@@ -1252,6 +1252,43 @@ if map == "a4_c17_zoo" then
                 return 0
             end
         end, "AnimateCompletionValue", 0)
+    end
+end
+
+
+---------- a4_c17_water_tower
+
+if map == "a4_c17_water_tower" then
+    if class == "prop_animinteractable" and model == "models/props_subway/scenes/desk_lever.vmdl" then
+        if thisEntity:GetName() == "" then
+            if player:Attribute_GetIntValue("lever_number", 0) == 0 then
+                thisEntity:SetEntityName("Lever1")
+                player:Attribute_SetIntValue("lever_number", 1)
+            elseif player:Attribute_GetIntValue("lever_number", 0) == 1 then
+                thisEntity:SetEntityName("Lever2")
+            end
+        end
+        if player:Attribute_GetIntValue("water_tower_lever_forward", 0) == 0 then
+            player:SetThink(function()
+                if player:Attribute_GetIntValue("use_released", 0) == 1 then
+                    SendToConsole("ent_fire " .. thisEntity:GetName() .. " setreturntocompletionamount 0.5; ent_fire " .. thisEntity:GetName() .. " enablereturntocompletion")
+                else
+                    SendToConsole("ent_fire " .. thisEntity:GetName() .. " setreturntocompletionamount 0; ent_fire " .. thisEntity:GetName() .. " enablereturntocompletion")
+                    player:Attribute_SetIntValue("water_tower_lever_forward", 1)
+                    return 0
+                end
+            end, "Interacting", 0)
+        else
+            player:SetThink(function()
+                if player:Attribute_GetIntValue("use_released", 0) == 1 then
+                    SendToConsole("ent_fire " .. thisEntity:GetName() .. " setreturntocompletionamount 0.5; ent_fire " .. thisEntity:GetName() .. " enablereturntocompletion")
+                else
+                    SendToConsole("ent_fire " .. thisEntity:GetName() .. " setreturntocompletionamount 1; ent_fire " .. thisEntity:GetName() .. " enablereturntocompletion")
+                    player:Attribute_SetIntValue("water_tower_lever_forward", 0)
+                    return 0
+                end
+            end, "Interacting", 0)
+        end
     end
 end
 
