@@ -1677,7 +1677,11 @@ end
 if name == "lift_button_box" then
     if _G.platform_help_shown == nil then
         local ent = SpawnEntityFromTableSynchronous("game_text", {["effect"]=2, ["spawnflags"]=1, ["color"]="230 230 230", ["color2"]="0 0 0", ["fadein"]=0, ["fadeout"]=0.15, ["fxtime"]=0.25, ["holdtime"]=5, ["x"]=-1, ["y"]=0.6})
-        DoEntFireByInstanceHandle(ent, "SetText", "Hold [" .. INTERACT .. "] and press [" .. PRIMARY_ATTACK .. "] to raise the platform\nor [" .. SECONDARY_ATTACK .. "] to lower the platform", 0, nil, nil)
+        if map == "a3_c17_processing_plant" then
+            DoEntFireByInstanceHandle(ent, "SetText", "Hold [" .. INTERACT .. "] and press [" .. PRIMARY_ATTACK .. "] to raise the platform\nor [" .. SECONDARY_ATTACK .. "] to lower the platform", 0, nil, nil)
+        elseif map == "a4_c17_water_tower" then
+            DoEntFireByInstanceHandle(ent, "SetText", "Hold [" .. INTERACT .. "] and press [" .. PRIMARY_ATTACK .. "] to move the crane right\nor [" .. SECONDARY_ATTACK .. "] to move the crane left", 0, nil, nil)
+        end
         DoEntFireByInstanceHandle(ent, "Display", "", 0, nil, nil)
         _G.platform_help_shown = "1"
     end
