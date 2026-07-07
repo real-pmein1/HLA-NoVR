@@ -2152,10 +2152,6 @@ if GlobalSys:CommandLineCheck("-novr") then
                                 ent = Entities:FindByName(nil, "eavesdrop_mystery")
                                 ent:RedirectOutput("OnTrigger2", "StopRevealEavesdrop", ent)
 
-
-
-
-
                                 SendToConsole("ent_fire @prop_phys_portaloo_door DisablePickup")
                             end
                         elseif GetMapName() == "a4_c17_water_tower" then
