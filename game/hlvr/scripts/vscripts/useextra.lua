@@ -1256,7 +1256,7 @@ if map == "a4_c17_zoo" then
 end
 
 
----------- a4_c17_water_tower
+---------- a4_c17_water_tower ----------
 
 if map == "a4_c17_water_tower" then
     if class == "prop_animinteractable" and model == "models/props_subway/scenes/desk_lever.vmdl" then
