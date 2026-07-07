@@ -8,19 +8,6 @@ local model = thisEntity:GetModelName()
 local player = Entities:GetLocalPlayer()
 
 player:Attribute_SetIntValue("useextra_executed", 1)
-print(map)
-print(class)
-print(name)
-print(model)
-
----- PMEIN1 SHOW PLAYER INVENTORY -----
-local playerEnt = Entities:GetLocalPlayer()
-local player_stats = {}
-playerEnt:GatherCriteria(player_stats)
-for k,l in pairs(player_stats) do
-    print(k .. " " .. l)
-end
----------------------------------------
 
 if vlua.find(name, "elev_anim_door") and thisEntity:Attribute_GetIntValue("toggle", 0) == 0 and thisEntity:Attribute_GetIntValue("player_in_combine_elevator", 0) == 1 then
     local ent = Entities:FindByName(nil, "inside_elevator_button")
