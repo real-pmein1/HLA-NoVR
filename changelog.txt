@@ -37,10 +37,15 @@ Changed the parked car to have its door correctly open
 Changed Russell's window to be initially closed instead of partially open
 Changed the auto-teleport on Russell's window so it can be manually opened
 
-a2_quarantine_entrance / a2_pistol
-==================================
+a2_quarantine_entrance
+======================
 
 No changes
+
+a2_pistol
+=========
+
+No changes (except ladder)
 
 a2_hideout
 ==========
@@ -141,3 +146,21 @@ a4_c17_water_tower
 
 Changed the pipe crane to move right/left with mouse1/mouse2
 Changed the vertical pallet levers to work correctly
+
+a4_c17_parking_garage
+=====================
+
+Changed the view orientation when starting the level
+Changed the falling cabinet door to need to be used to open
+Changed some toner path junctions to original orientation
+Changed the Combine gun release key from J to the normal USE button (default E)
+
+a5_vault
+========
+
+No changes (except ladder)
+
+a5_ending
+=========
+
+Changed the end interaction sequence to require using the two candlers instead of it being automatic
