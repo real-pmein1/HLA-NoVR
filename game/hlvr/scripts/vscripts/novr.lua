@@ -2837,9 +2837,6 @@ if GlobalSys:CommandLineCheck("-novr") then
         player:SetThink(function()
             player:Attribute_SetIntValue("disable_unstuck", 1)
             SendToConsole("ent_fire innervault_energize_event_relay Kill")
-            SendToConsole("ent_fire_output g_release_hand1 OnHandPosed")
-            SendToConsole("ent_fire_output g_release_hand2 OnHandPosed")
-            SendToConsole("ent_fire player_speedmod ModifySpeed 0")
             -- If subtitles are deactivated hide also the custom hud elements
             if Convars:GetStr("cc_subtitles") == "0" then
                 SendToConsole("r_drawvgui 0")

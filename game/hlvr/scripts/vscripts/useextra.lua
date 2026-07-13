@@ -1326,6 +1326,12 @@ end
 ---------- a5_ending ----------
 
 if map == "a5_ending" then
+    if name == "l_candler" then
+        SendToConsole("ent_fire player_speedmod ModifySpeed 0")
+        SendToConsole("ent_fire left_hand_posed_and_energized_relay trigger")
+    elseif name == "r_candler" then
+        SendToConsole("ent_fire player_speedmod ModifySpeed 0")
+        SendToConsole("ent_fire right_hand_posed_and_energized_relay trigger")
     end
 end
 
