@@ -1305,21 +1305,28 @@ if map == "a4_c17_parking_garage" then
     if name == "falling_cabinet_door" then
         Entities:FindByName(nil, "falling_cabinet_door"):ApplyLocalAngularVelocityImpulse(Vector(0, 1200, 0))
     end
+
+    if name == "combine_gun_mechanical" then
+        SendToConsole("bind " .. INTERACT .. " novr_leavecombinegun")
+        if thisEntity:Attribute_GetIntValue("used", 0) == 0 then
+            local ent = SpawnEntityFromTableSynchronous("game_text", {["effect"]=2, ["spawnflags"]=1, ["color"]="230 230 230", ["color2"]="0 0 0", ["fadein"]=0, ["fadeout"]=0.15, ["fxtime"]=0.25, ["holdtime"]=5, ["x"]=-1, ["y"]=0.6})
+            DoEntFireByInstanceHandle(ent, "SetText", "Press " .. INTERACT .. " to leave", 0, nil, nil)
+            DoEntFireByInstanceHandle(ent, "Display", "", 0, nil, nil)
+
+            ent = Entities:FindByName(nil, "combine_gun_interact") -- parent gun entity
+            ent:Attribute_SetIntValue("ready", 1)
+            ent:SaveQAngle("OrigAngle", ent:GetAngles())
+        end
+        EquipCombineGunMechanical(player)
+        thisEntity:Attribute_SetIntValue("used", 1)
+    end
 end
 
-if name == "combine_gun_mechanical" then
-    SendToConsole("bind J novr_leavecombinegun")
-    if thisEntity:Attribute_GetIntValue("used", 0) == 0 then
-        local ent = SpawnEntityFromTableSynchronous("game_text", {["effect"]=2, ["spawnflags"]=1, ["color"]="230 230 230", ["color2"]="0 0 0", ["fadein"]=0, ["fadeout"]=0.15, ["fxtime"]=0.25, ["holdtime"]=5, ["x"]=-1, ["y"]=0.6})
-        DoEntFireByInstanceHandle(ent, "SetText", "Press [J] to get out", 0, nil, nil)
-        DoEntFireByInstanceHandle(ent, "Display", "", 0, nil, nil)
 
-        ent = Entities:FindByName(nil, "combine_gun_interact") -- parent gun entity
-        ent:Attribute_SetIntValue("ready", 1)
-        ent:SaveQAngle("OrigAngle", ent:GetAngles())
+---------- a5_ending ----------
+
+if map == "a5_ending" then
     end
-    EquipCombineGunMechanical(player)
-    thisEntity:Attribute_SetIntValue("used", 1)
 end
 
 

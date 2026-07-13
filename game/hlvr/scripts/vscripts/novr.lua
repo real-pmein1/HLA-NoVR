@@ -2223,7 +2223,7 @@ if GlobalSys:CommandLineCheck("-novr") then
                                     SendToConsole("ent_fire player_speedmod ModifySpeed 2")
                                     SendToConsole("bind " .. PRIMARY_ATTACK .. " \"+customattack;viewmodel_update\"")
                                     SendToConsole("r_drawviewmodel 1")
-                                    SendToConsole("unbind J")
+									SendToConsole("bind " .. INTERACT .. " +useextra")
                                 end
                             end, "", 0)
                         elseif GetMapName() == "a5_vault" then
