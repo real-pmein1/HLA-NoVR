@@ -5,11 +5,13 @@ Added player_pos script to all maps for in-game position-based triggers
 Added some new bindings
 Added back in all removed tripmines
 Added raise/lower console commands for the scissor platforms
+Added climbable ladders (HL2-style) and removed all but one "USE" ladders
 Changed some default bindings
 Changed minimum FOV to 60 but force the main menu to 80
 Changed resin HUD counter to flash blue then yellow
 Changed flashlight to be automatic by default, as per the normal game (set a key to FLASHLIGHT in bindings.lua to make it manually controlled)
 Changed all tripmines to need to be disabled by the multitool
+Changed movement to support ladders and improved jumping
 
 a1_intro_world
 ==============

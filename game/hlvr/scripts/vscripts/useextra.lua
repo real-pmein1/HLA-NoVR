@@ -1053,14 +1053,14 @@ if map == "a3_distillery" then
         SendToConsole("ent_fire_output larry_ladder OnCompletionA")
         SendToConsole("ent_fire_output larry_ladder OnCompletionC")
         player:Attribute_SetIntValue("pulled_larry_ladder", 1)
+        player:SetVelocity(Vector(player:GetForwardVector().x - (player:GetForwardVector().x * 2), player:GetForwardVector().y - (player:GetForwardVector().y * 2), 0):Normalized() * 150)
     end
 
     if name == "cellar_ladder" then
         if player:Attribute_GetIntValue("cellar_ladder_down", 0) == 0 then
             SendToConsole("ent_fire cellar_ladder Enable")
             player:Attribute_SetIntValue("cellar_ladder_down", 1)
-        else
-            ClimbLadder(560)
+            player:SetVelocity(Vector(player:GetForwardVector().x - (player:GetForwardVector().x * 2), player:GetForwardVector().y - (player:GetForwardVector().y * 2), 0):Normalized() * 150)
         end
     end
 
@@ -1295,8 +1295,6 @@ end
 
 ---------- a4_c17_parking_garage ----------
 
-if name == "toner_sliding_ladder" then
-    ClimbLadder(160)
 end
 
 if name == "combine_gun_mechanical" then

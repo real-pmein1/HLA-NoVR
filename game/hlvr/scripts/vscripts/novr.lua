@@ -1070,18 +1070,14 @@ if GlobalSys:CommandLineCheck("-novr") then
 
         -- Ladders and position based interactions
         if GetMapName() == "a1_intro_world" then
-            if vlua.find(Entities:FindAllInSphere(Vector(648, -1757, -141), 10), player) then
-                ClimbLadder(-64)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(606, -2339, -217), 20), player) then
+            if vlua.find(Entities:FindAllInSphere(Vector(606, -2339, -217), 20), player) then
                 if 135 < player:GetAngles().y or player:GetAngles().y < -135 then
                     DoEntFireByInstanceHandle(Entities:FindByName(nil, "979_518_button_pusher_prop"), "RunScriptFile", "useextra", 0, nil, nil)
                 end
             end
         elseif GetMapName() == "a1_intro_world_2" then
-            if vlua.find(Entities:FindAllInSphere(Vector(-1268, 576, -63), 10), player) and Entities:FindByName(nil, "balcony_ladder"):GetSequence() == "idle_open" then
-                ClimbLadder(80)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(-911, 922, -68), 10), player) then
-                ClimbLadder(-22)
+            if vlua.find(Entities:FindAllInSphere(Vector(-911, 922, -68), 10), player) then
+                ClimbLadder(-22) -- park slide
             end
 
             local startVector = player:EyePosition()
@@ -1100,10 +1096,6 @@ if GlobalSys:CommandLineCheck("-novr") then
                 if ent then
                     DoEntFireByInstanceHandle(ent, "RunScriptFile", "useextra", 0, nil, nil)
                 end
-            end
-        elseif GetMapName() == "a2_pistol" then
-            if vlua.find(Entities:FindAllInSphere(Vector(439, 896, 454), 10), player) then
-                ClimbLadder(540)
             end
         elseif GetMapName() == "a2_hideout" then
             local startVector = player:EyePosition()
@@ -1130,8 +1122,6 @@ if GlobalSys:CommandLineCheck("-novr") then
                 local ent = Entities:FindByName(nil, "bell")
                 DoEntFireByInstanceHandle(ent, "RunScriptFile", "useextra", 0, nil, nil)
             end
-        elseif GetMapName() == "a2_headcrabs_tunnel" and vlua.find(Entities:FindAllInSphere(Vector(354, -251, -62), 18), player) then
-            ClimbLadder(22)
         elseif GetMapName() == "a3_hotel_lobby_basement" then
             if vlua.find(Entities:FindAllInSphere(Vector(1059, -1475, 200), 20), player) then
                 if player:Attribute_GetIntValue("EnabledHotelLobbyPower", 0) == 1 then
@@ -1139,18 +1129,6 @@ if GlobalSys:CommandLineCheck("-novr") then
                 else
                     SendToConsole("ent_fire elev_button_floor_1 Press")
                 end
-            elseif vlua.find(Entities:FindAllInSphere(Vector(976, -1487, 208), 15), player) then
-                ClimbLadder(280)
-            end
-        elseif GetMapName() == "a3_hotel_underground_pit" then
-            if vlua.find(Entities:FindAllInSphere(Vector(2239, -1017, 528), 15), player) then
-                ClimbLadder(570)
-            end
-        elseif GetMapName() == "a3_hotel_interior_rooftop" then
-            if vlua.find(Entities:FindAllInSphere(Vector(2381, -1841, 448), 10), player) then
-                ClimbLadder(560)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(2335, -1832, 757), 20), player) then
-                ClimbLadder(840, Vector(0, 0, 0))
             end
         elseif GetMapName() == "a3_c17_processing_plant" then
             local startVector = player:EyePosition()
@@ -1171,97 +1149,11 @@ if GlobalSys:CommandLineCheck("-novr") then
                     SendToConsole("ent_fire_output lift_button_down onin")
                 end
             end
-
-            if vlua.find(Entities:FindAllInSphere(Vector(-80, -2215, 760), 15), player) and Entities:FindByName(nil, "factory_int_up_barnacle_npc_1"):GetHealth() <= 0 then
-                ClimbLadder(890)
-            end
-
-            if vlua.find(Entities:FindAllInSphere(Vector(-237,-2856,392), 15), player) then
-                player:SetVelocity(Vector(player:GetForwardVector().x, player:GetForwardVector().y, 0):Normalized() * 150)
-                player:SetThink(function()
-                    ClimbLadder(440)
-                end, "ClimbLadder", 0.1)
-            end
-
-            if vlua.find(Entities:FindAllInSphere(Vector(414,-2459,328), 15), player) then
-                player:SetVelocity(Vector(player:GetForwardVector().x, player:GetForwardVector().y, 0):Normalized() * 150)
-                player:SetThink(function()
-                    ClimbLadder(440)
-                end, "ClimbLadder", 0.2)
-            end
-
-            if vlua.find(Entities:FindAllInSphere(Vector(326, -3491, 312), 20), player) then
-                ClimbLadder(400)
-            end
-
-            if vlua.find(Entities:FindAllInSphere(Vector(-1630, -2045, 111), 15), player) then
-                ClimbLadder(180)
-            end
-
-            if vlua.find(Entities:FindAllInSphere(Vector(-1464, -2740, 127), 15), player) then
-                ClimbLadder(180)
-            end
-
-            if vlua.find(Entities:FindAllInSphere(Vector(-1393, -2493, 113), 10), player) then
-                ClimbLadder(425, Vector(0, 0, -1))
-            end
-
-            if vlua.find(Entities:FindAllInSphere(Vector(-1420, -2482, 472), 30), player) then
-                ClimbLadderSound()
-                SendToConsole("fadein 0.2")
-                SendToConsole("setpos_exact -1392 -2471 53")
-            end
         elseif GetMapName() == "a3_distillery" then
-            if vlua.find(Entities:FindAllInSphere(Vector(20, -496, 211), 10), player) then
-                ClimbLadder(462)
-            end
-
-            if vlua.find(Entities:FindAllInSphere(Vector(140, -210, 426), 20), player) then
-                ClimbLadder(440)
-            end
-
             if vlua.find(Entities:FindAllInSphere(Vector(-24, -151, 426), 5), player) then
                 if player:Attribute_GetIntValue("pulled_larry_ladder", 0) == 0 then
                     DoEntFireByInstanceHandle(Entities:FindByName(nil, "larry_ladder"), "RunScriptFile", "useextra", 0, nil, nil)
-                else
-                    ClimbLadder(560)
                 end
-            end
-
-            if vlua.find(Entities:FindAllInSphere(Vector(525, 1595, 578), 10), player) then
-                ClimbLadder(690)
-            end
-        elseif GetMapName() == "a4_c17_tanker_yard" then
-            if vlua.find(Entities:FindAllInSphere(Vector(6980, 2591, 13), 10), player) then
-                ClimbLadder(270)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(6618, 2938, 334), 10), player) then
-                ClimbLadder(402)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(6069, 3902, 416), 10), player) then
-                ClimbLadder(686)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(5456, 4876, 288), 10), player) then
-                ClimbLadder(420)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(5434, 5755, 273), 10), player) then
-                ClimbLadder(403, -player:GetRightVector())
-            end
-        elseif GetMapName() == "a4_c17_water_tower" then
-            if vlua.find(Entities:FindAllInSphere(Vector(3314, 6048, 64), 10), player) then
-                ClimbLadder(142)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(2981, 5879, -303), 10), player) then
-                ClimbLadder(-43)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(2374, 6207, -177), 10), player) then
-                ClimbLadder(-130)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(2432, 6662, 160), 10), player) then
-                ClimbLadder(330)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(2848, 6130, 384), 10), player) then
-                ClimbLadder(575)
-            elseif vlua.find(Entities:FindAllInSphere(Vector(2848, 6162, 602), 10), player) then
-                ClimbLadderSound()
-                SendToConsole("fadein 0.2")
-                SendToConsole("setpos_exact 2848 6130 360")
-            end
-        elseif GetMapName() == "a5_vault" then
-            if vlua.find(Entities:FindAllInSphere(Vector(-445, 2900, -515), 10), player) then
-                ClimbLadder(-440, Vector(0, 0, 0.5))
             end
         end
     end, "", 0)
@@ -1788,10 +1680,6 @@ if GlobalSys:CommandLineCheck("-novr") then
                     ent = Entities:FindByName(nil, "relay_heist_monitors_callincoming")
                     ent:RedirectOutput("OnTrigger", "ShowInteractTutorial", ent)
 
-                    SendToConsole("ent_create env_message { targetname text_ladder message LADDER }")
-                    ent = Entities:FindByName(nil, "51_ladder_hint_trigger")
-                    ent:RedirectOutput("OnTrigger", "ShowLadderTutorial", ent)
-
                     ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="light_switch_1", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props/lightswitch_2_switch.vmdl", ["origin"]="-541.6 1770.1 133.4", ["angles"]="0 0 0", ["modelscale"]=2})
                     ent = SpawnEntityFromTableSynchronous("prop_dynamic", {["targetname"]="light_switch_2", ["solid"]=6, ["renderamt"]=0, ["model"]="models/props/lightswitch_2_switch.vmdl", ["origin"]="-903.2 1691.6 111", ["angles"]="0 0 0", ["modelscale"]=2})
 					
@@ -2196,7 +2084,6 @@ if GlobalSys:CommandLineCheck("-novr") then
 
                             ent = Entities:FindByName(nil, "11478_6250_locked_door_relay_break_lock")
                             ent:RedirectOutput("OnTrigger", "FixJeffBatteryPuzzle", ent)
-
 
                             SendToConsole("ent_fire timer_gun_equipped Kill")
                             SendToConsole("ent_fire timer_gun_equipped_b Kill")
@@ -2699,11 +2586,6 @@ if GlobalSys:CommandLineCheck("-novr") then
     function ShowInteractTutorial()
         local ent = SpawnEntityFromTableSynchronous("env_message", {["message"]="INTERACT"})
         DoEntFireByInstanceHandle(ent, "ShowMessage", "", 0, nil, nil)
-        SendToConsole("snd_sos_start_soundevent Instructor.StartLesson")
-    end
-
-    function ShowLadderTutorial()
-        SendToConsole("ent_fire text_ladder ShowMessage")
         SendToConsole("snd_sos_start_soundevent Instructor.StartLesson")
     end
 
