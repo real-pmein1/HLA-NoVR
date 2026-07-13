@@ -453,7 +453,7 @@ function PowerTonerPath(junction, junction_name, junction_input)
 
     local junction_rotation = junction_entity:Attribute_GetIntValue("junction_rotation", 0)
 
-    local junction_types = {
+    local junction_types = { -- (right, up, left, down)
         { -- Type 0: I Junction
             {{2}, { }, {0}, { }}, -- Rotation 0
             {{ }, {3}, { }, {1}}, -- Rotation 1

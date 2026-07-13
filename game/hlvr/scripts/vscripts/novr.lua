@@ -2178,6 +2178,10 @@ if GlobalSys:CommandLineCheck("-novr") then
                             if loading_save_file then
                                 SendToConsole("novr_leavecombinegun") -- avoid softlock
                             else
+                                -- Default Junction Rotations
+                                Entities:FindByName(nil, "toner_junction_5"):Attribute_SetIntValue("junction_rotation", 1)
+                                Entities:FindByName(nil, "toner_junction_2"):Attribute_SetIntValue("junction_rotation", 2)
+
                                 SendToConsole("setpos -958 -842 910")
 
                                 SendToConsole("ent_fire template_spawn_black_headcrabs_01 AddOutput OnEntitySpawned>headcrab_black_underground_01>Kill>>0>-1\"")
