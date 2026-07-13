@@ -2182,11 +2182,6 @@ if GlobalSys:CommandLineCheck("-novr") then
 
                                 SendToConsole("ent_fire template_spawn_black_headcrabs_01 AddOutput OnEntitySpawned>headcrab_black_underground_01>Kill>>0>-1\"")
 
-                                ent = Entities:FindByName(nil, "falling_cabinet_door")
-                                DoEntFireByInstanceHandle(ent, "DisablePickup", "", 0, nil, nil)
-
-                                SendToConsole("ent_fire func_physbox DisableMotion")
-
                                 ent = Entities:FindByName(nil, "relay_enter_ufo_beam")
                                 ent:RedirectOutput("OnTrigger", "EnterVaultBeam", ent)
 

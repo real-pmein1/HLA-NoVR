@@ -665,7 +665,6 @@ if class == "info_hlvr_toner_port" and (thisEntity:Attribute_GetIntValue("used",
     if thisEntity:Attribute_GetIntValue("redraw_toner", 0) == 0 then
         if map == "a4_c17_parking_garage" then
             if name == "toner_port" then
-                Entities:FindByName(nil, "falling_cabinet_door"):ApplyLocalAngularVelocityImpulse(Vector(0, 1200, 0))
             end
         end
     end

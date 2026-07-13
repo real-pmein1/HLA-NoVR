@@ -1301,6 +1301,10 @@ if map == "a4_c17_parking_garage" then
         player:Attribute_SetIntValue("toner_ladder_down", 1)
         player:SetVelocity(Vector(player:GetForwardVector().x - (player:GetForwardVector().x * 2), player:GetForwardVector().y - (player:GetForwardVector().y * 2), 0):Normalized() * 150)
     end
+
+    if name == "falling_cabinet_door" then
+        Entities:FindByName(nil, "falling_cabinet_door"):ApplyLocalAngularVelocityImpulse(Vector(0, 1200, 0))
+    end
 end
 
 if name == "combine_gun_mechanical" then
