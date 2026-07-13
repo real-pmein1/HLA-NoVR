@@ -662,10 +662,9 @@ if class == "info_hlvr_toner_port" and (thisEntity:Attribute_GetIntValue("used",
         end
     end
 
-    if thisEntity:Attribute_GetIntValue("redraw_toner", 0) == 0 then
-        if map == "a4_c17_parking_garage" then
-            if name == "toner_port" then
-            end
+    if map == "a4_c17_parking_garage" then
+        if name == "toner_port" then
+            SendToConsole("ent_fire toner_port disable")
         end
     end
 
