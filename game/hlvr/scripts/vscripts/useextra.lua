@@ -247,7 +247,7 @@ if not vlua.find(model, "doorhandle") and name ~= "bridge_crank" and name ~= "gr
 
             if name == "barricade_door" then
                 DoEntFireByInstanceHandle(Entities:FindByName(nil, "barricade_lock_relay"), "Trigger", "", 0, nil, nil)
-                SendToConsole("ent_fire player_speedmod ModifySpeed 1")
+                SendToConsole("ent_fire player_speedmod ModifySpeed 2")
             elseif name == "12712_shotgun_wheel" then
                 local bar = Entities:FindByName(nil, "12712_shotgun_bar_for_wheel")
                 bar:Kill()
@@ -1407,7 +1407,7 @@ if class == "prop_dynamic" or "func_physical_button" then
                     SendToConsole("ent_fire_output health_station OnHealingPlayerStop")
                     player:StopThink("HealthChargeSoundLoop")
                     StopSoundEvent("HealthStation.Loop", player)
-                    SendToConsole("ent_fire player_speedmod ModifySpeed 1")
+                    SendToConsole("ent_fire player_speedmod ModifySpeed 2")
                 end
             end, "Interacting", 0)
 

@@ -174,6 +174,109 @@ if GlobalSys:CommandLineCheck("-novr") then
         player:Attribute_SetIntValue("disable_unstuck", 0)
     end, nil)
 
+    Convars:RegisterCommand("+forward_climb", function()
+        local playerEnt_pos = Entities:GetLocalPlayer()
+        playerEnt_pos:Attribute_SetIntValue("pressing_forward", 1)
+        if Entities:GetLocalPlayer():Attribute_GetIntValue("player_on_ladder", 0) == 1 then
+            playerEnt_pos:Attribute_SetIntValue("disable_unstuck", 1)
+            playerEnt_pos:Attribute_SetIntValue("climb_dir", 1) -- 1 = UP
+            local ticks = 0
+            playerEnt_pos:SetThink(function()
+                SendToConsole("ent_fire player_speedmod ModifySpeed 1")
+                if playerEnt_pos:Attribute_GetIntValue("climb_dir", 0) == 1 then
+                    playerEnt_pos:SetVelocity(Vector(0, 0, 0))
+                    playerEnt_pos:SetOrigin(playerEnt_pos:GetOrigin() + Vector(0, 0, 2.1))
+                    ticks = ticks + 1
+                    if ticks == 25 then
+                        SendToConsole("snd_sos_start_soundevent Step_Player.Ladder_Single")
+                        ticks = 0
+                    end
+                    return 0
+                elseif Entities:GetLocalPlayer():Attribute_GetIntValue("player_on_ladder", 0) == 0 then
+                    SendToConsole("ent_fire player_speedmod ModifySpeed 2")
+                else
+                    playerEnt_pos:SetVelocity(Vector(0, 0, 0))
+                    SendToConsole("ent_fire player_speedmod ModifySpeed 0")
+                    playerEnt_pos:Attribute_SetIntValue("climb_dir", 0) -- 0 = NO MOVEMENT
+                    return nil
+                end
+            end, "LadderClimb", 0)
+        else
+            playerEnt_pos:Attribute_SetIntValue("disable_unstuck", 0)
+            SendToConsole("+forwardfixed")
+        end
+    end, "", 0)
+
+    Convars:RegisterCommand("-forward_climb", function()
+        local playerEnt_pos = Entities:GetLocalPlayer()
+        playerEnt_pos:Attribute_SetIntValue("pressing_forward", 0)
+        if Entities:GetLocalPlayer():Attribute_GetIntValue("player_on_ladder", 0) == 1 then
+            playerEnt_pos:Attribute_SetIntValue("climb_dir", 0)
+            playerEnt_pos:SetVelocity(Vector(0, 0, 0))
+            SendToConsole("ent_fire player_speedmod ModifySpeed 0")
+        else
+            playerEnt_pos:Attribute_SetIntValue("disable_unstuck", 0)
+            SendToConsole("-forwardfixed")
+        end
+    end, "", 0)
+
+    Convars:RegisterCommand("+back_descend", function()
+        local playerEnt_pos = Entities:GetLocalPlayer()
+        playerEnt_pos:Attribute_SetIntValue("pressing_back", 1)
+        if Entities:GetLocalPlayer():Attribute_GetIntValue("player_on_ladder", 0) == 1 then
+            playerEnt_pos:Attribute_SetIntValue("disable_unstuck", 1)
+            playerEnt_pos:Attribute_SetIntValue("climb_dir", 2) -- 2 = DOWN
+            local ticks = 0
+            playerEnt_pos:SetThink(function()
+                SendToConsole("ent_fire player_speedmod ModifySpeed 1")
+                if playerEnt_pos:Attribute_GetIntValue("climb_dir", 0) == 2 then
+                    playerEnt_pos:SetVelocity(Vector(0, 0, 0))
+                    playerEnt_pos:SetOrigin(playerEnt_pos:GetOrigin() + Vector(0, 0, -2.1))
+                    playerEnt_pos:Attribute_SetIntValue("climb_dir", 2)
+                    ticks = ticks + 1
+                    if ticks == 25 then
+                        SendToConsole("snd_sos_start_soundevent Step_Player.Ladder_Single")
+                        ticks = 0
+                    end
+                    return 0
+                elseif Entities:GetLocalPlayer():Attribute_GetIntValue("player_on_ladder", 0) == 0 then
+                    SendToConsole("ent_fire player_speedmod ModifySpeed 2")
+                else
+                    playerEnt_pos:SetVelocity(Vector(0, 0, 0))
+                    SendToConsole("ent_fire player_speedmod ModifySpeed 0")
+                    playerEnt_pos:Attribute_SetIntValue("climb_dir", 0)
+                    return nil
+                end
+            end, "LadderDescend", 0)
+        else
+            playerEnt_pos:Attribute_SetIntValue("disable_unstuck", 0)
+            SendToConsole("+backfixed")
+        end
+    end, "", 0)
+
+    Convars:RegisterCommand("-back_descend", function()
+        local playerEnt_pos = Entities:GetLocalPlayer()
+        playerEnt_pos:Attribute_SetIntValue("pressing_back", 0)
+        playerEnt_pos:Attribute_SetIntValue("climb_dir", 0)
+        if Entities:GetLocalPlayer():Attribute_GetIntValue("player_on_ladder", 0) == 1 then
+            playerEnt_pos:SetVelocity(Vector(0, 0, 0))
+            SendToConsole("ent_fire player_speedmod ModifySpeed 0")
+        else
+            playerEnt_pos:Attribute_SetIntValue("disable_unstuck", 0)
+            SendToConsole("-backfixed")
+        end
+    end, "", 0)
+
+    Convars:RegisterCommand("+sprint_fixed", function()
+        SendToConsole("ent_fire player_speedmod ModifySpeed 3.5")
+        Entities:GetLocalPlayer():Attribute_SetIntValue("sprinting", 1)
+    end, "", 0)
+
+    Convars:RegisterCommand("-sprint_fixed", function()
+        SendToConsole("ent_fire player_speedmod ModifySpeed 2")
+        Entities:GetLocalPlayer():Attribute_SetIntValue("sprinting", 0)
+    end, "", 0)
+
     Convars:RegisterCommand("notarget_jeff", function()
 		local player = Entities:GetLocalPlayer()
 		if player:Attribute_GetIntValue("notarget", 0) == 0 then
@@ -375,6 +478,18 @@ if GlobalSys:CommandLineCheck("-novr") then
         end
     end, "", 0)
 
+    Convars:RegisterCommand("+new_duck", function()
+        Entities:GetLocalPlayer():Attribute_SetIntValue("ducking", 1)
+        SendToConsole("ent_fire player_speedmod ModifySpeed 3.5")
+        SendToConsole("+iv_duck")
+    end, "", 0)
+
+    Convars:RegisterCommand("-new_duck", function()
+        Entities:GetLocalPlayer():Attribute_SetIntValue("ducking", 0)
+        SendToConsole("ent_fire player_speedmod ModifySpeed 2")
+        SendToConsole("-iv_duck")
+    end, "", 0)
+
     Convars:RegisterCommand("novr_cover_mouth", function()
         local viewmodel = Entities:FindByClassname(nil, "viewmodel")
         viewmodel:SetRenderAlpha(0)
@@ -393,7 +508,7 @@ if GlobalSys:CommandLineCheck("-novr") then
         ent:FireOutput("OnHackFailed", nil, nil, nil, 0)
         ent:FireOutput("OnPuzzleFailed", nil, nil, nil, 0)
         ent:Attribute_SetIntValue("used", 0)
-        SendToConsole("ent_fire player_speedmod ModifySpeed 1")
+        SendToConsole("ent_fire player_speedmod ModifySpeed 2")
     end, "", 0)
 
     Convars:RegisterCommand("novr_hacking_puzzle_success", function()
@@ -401,7 +516,7 @@ if GlobalSys:CommandLineCheck("-novr") then
         DoEntFireByInstanceHandle(ent, "EndHack", "", 0, nil, nil)
         ent:FireOutput("OnHackSuccess", nil, nil, nil, 0)
         ent:FireOutput("OnPuzzleSuccess", nil, nil, nil, 0)
-        SendToConsole("ent_fire player_speedmod ModifySpeed 1")
+        SendToConsole("ent_fire player_speedmod ModifySpeed 2")
     end, "", 0)
 
     Convars:RegisterConvar("novr_chosen_weapon_upgrade", "", "", 0)
@@ -1269,6 +1384,9 @@ if GlobalSys:CommandLineCheck("-novr") then
             SendToConsole("binddefaults")
             SendToConsole("unbind TAB")
             SendToConsole("bind PAUSE main_menu_exec")
+            if not loading_save_file then
+                SendToConsole("ent_fire player_speedmod ModifySpeed 2")
+            end
             print("[GameMenu] pause_menu_mode")
             Entities:GetLocalPlayer():SetThink(function()
                 SendToConsole("gameui_allowescape;gameui_preventescapetoshow;gameui_hide")
@@ -1279,14 +1397,14 @@ if GlobalSys:CommandLineCheck("-novr") then
                 SendToConsole("alias +covermouth \"ent_fire !player suppresscough 1;ent_fire_output @player_proxy OnPlayerCoverMouth;ent_fire lefthand Enable;novr_cover_mouth\"")
                 SendToConsole("alias -customattack -iv_attack")
                 SendToConsole("alias +customattack \"+iv_attack;usemultitool\"")
-                SendToConsole("alias +forwardfixed +iv_forward")
-                SendToConsole("alias -forwardfixed \"-iv_forward;unstuck\"")
-                SendToConsole("alias +backfixed +iv_back")
-                SendToConsole("alias -backfixed \"-iv_back;unstuck\"")
-                SendToConsole("alias +leftfixed +iv_left")
-                SendToConsole("alias -leftfixed \"-iv_left;unstuck\"")
-                SendToConsole("alias +rightfixed +iv_right")
-                SendToConsole("alias -rightfixed \"-iv_right;unstuck\"")
+                SendToConsole("alias +forwardfixed +forward")
+                SendToConsole("alias -forwardfixed \"-forward;unstuck\"")
+                SendToConsole("alias +backfixed +back")
+                SendToConsole("alias -backfixed \"-back;unstuck\"")
+                SendToConsole("alias +leftfixed +moveleft")
+                SendToConsole("alias -leftfixed \"-moveleft;unstuck\"")
+                SendToConsole("alias +rightfixed +moveright")
+                SendToConsole("alias -rightfixed \"-moveright;unstuck\"")
                 SendToConsole("alias +useextra \"+use;useextra\"")
                 SendToConsole("alias -useextra \"-use;useextra_release\"")
                 SendToConsole("-covermouth")
@@ -1305,12 +1423,12 @@ if GlobalSys:CommandLineCheck("-novr") then
             SendToConsole("bind " .. RELOAD .. " \"+reload;novr_resetads\"")
             SendToConsole("bind " .. QUICK_SWAP .. " \"lastinv;viewmodel_update\"")
             SendToConsole("bind " .. COVER_MOUTH .. " +covermouth")
-            SendToConsole("bind " .. MOVE_FORWARD .. " +forwardfixed")
-            SendToConsole("bind " .. MOVE_BACK .. " +backfixed")
+            SendToConsole("bind " .. MOVE_FORWARD .. " +forward_climb")
+            SendToConsole("bind " .. MOVE_BACK .. " +back_descend")
             SendToConsole("bind " .. MOVE_LEFT .. " +leftfixed")
             SendToConsole("bind " .. MOVE_RIGHT .. " +rightfixed")
-            SendToConsole("bind " .. CROUCH .. " +iv_duck")
-            SendToConsole("bind " .. SPRINT .. " +iv_sprint")
+            SendToConsole("bind " .. CROUCH .. " +new_duck")
+            SendToConsole("bind " .. SPRINT .. " +sprint_fixed")
             SendToConsole("bind " .. VIEWM_INSPECT .. " viewmodel_inspect_animation")
             SendToConsole("bind " .. ZOOM .. " +novr_zoom")
             SendToConsole("bind " .. UNEQUIP_WEARABLE .. " novr_unequip_wearable")
@@ -1714,7 +1832,7 @@ if GlobalSys:CommandLineCheck("-novr") then
                         SendToConsole("setpos_exact -831.591980 1946.499878 80")
                         SendToConsole("noclip")
                         SendToConsole("ent_fire 205_2724_hingecam enablecollision")
-                        SendToConsole("ent_fire player_speedmod ModifySpeed 1")
+                        SendToConsole("ent_fire player_speedmod ModifySpeed 2")
                         SendToConsole("bind " .. PRIMARY_ATTACK .. " \"+customattack;viewmodel_update\"")
                         SendToConsole("bind " .. INTERACT .. " +useextra")
                     end
@@ -2215,14 +2333,14 @@ if GlobalSys:CommandLineCheck("-novr") then
                                     ent:SetAngles(gunAngle.x,gunAngle.y,gunAngle.z)
                                     ent:Attribute_SetIntValue("active", 0)
                                     SendToConsole("ent_fire combine_gun_mechanical enablecollision")
-                                    SendToConsole("ent_fire player_speedmod ModifySpeed 1")
+                                    SendToConsole("ent_fire player_speedmod ModifySpeed 2")
                                     SendToConsole("bind " .. PRIMARY_ATTACK .. " \"+customattack;viewmodel_update\"")
                                     SendToConsole("r_drawviewmodel 1")
                                     SendToConsole("unbind J")
                                 end
                             end, "", 0)
                         elseif GetMapName() == "a5_vault" then
-                            SendToConsole("ent_fire player_speedmod ModifySpeed 1")
+                            SendToConsole("ent_fire player_speedmod ModifySpeed 2")
                             SendToConsole("use weapon_bugbait")
                             SendToConsole("r_drawviewmodel 0")
                             ent:SetThink(function()
@@ -2387,7 +2505,7 @@ if GlobalSys:CommandLineCheck("-novr") then
 
     function MoveFreely(a, b)
         SendToConsole("mouse_disableinput 0")
-        SendToConsole("ent_fire player_speedmod ModifySpeed 1")
+        SendToConsole("ent_fire player_speedmod ModifySpeed 2")
         SendToConsole("hidehud 96")
         SendToConsole("bind " .. COVER_MOUTH .. " +covermouth")
     end
