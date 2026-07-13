@@ -2183,6 +2183,7 @@ if GlobalSys:CommandLineCheck("-novr") then
                                 Entities:FindByName(nil, "toner_junction_2"):Attribute_SetIntValue("junction_rotation", 2)
 
                                 SendToConsole("setpos -958 -842 910")
+                                SendToConsole("setang 0 79 0")
 
                                 SendToConsole("ent_fire template_spawn_black_headcrabs_01 AddOutput OnEntitySpawned>headcrab_black_underground_01>Kill>>0>-1\"")
 
