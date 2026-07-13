@@ -13,8 +13,8 @@ Changed flashlight to be automatic by default, as per the normal game (set a key
 Changed all tripmines to need to be disabled by the multitool
 Changed movement to support ladders and improved jumping
 
-a1_intro_world
-==============
+ENTANGLEMENT (a1_intro_world)
+=============================
 
 Added usable radio tuner (press and hold USE to rotate it)
 Added usable monitor buttons in the Eli call area
@@ -25,8 +25,8 @@ Changed the video camera release key from J to the normal USE button (default E)
 Changed both of the elevators' button commands from a debug command to a button press
 Removed the auto-teleport on the end vent so it can be manually opened and traversed using a crouch-jump
 
-a1_intro_world_2
-================
+ENTANGLEMENT (a1_intro_world_2)
+===============================
 
 Added crouch tutorial message to the crashed van's exit
 Added missing lightstand switch in Russell's hideout entrance
@@ -37,70 +37,70 @@ Changed the parked car to have its door correctly open
 Changed Russell's window to be initially closed instead of partially open
 Changed the auto-teleport on Russell's window so it can be manually opened
 
-a2_quarantine_entrance
-======================
+THE QUARANTINE ZONE (a2_quarantine_entrance)
+============================================
 
 No changes
 
-a2_pistol
-=========
+THE QUARANTINE ZONE (a2_pistol)
+===============================
 
 No changes (except ladder)
 
-a2_hideout
-==========
+THE QUARANTINE ZONE (a2_hideout)
+================================
 
 Changed the rollup door crank wheel to turn
 Changed the bell to pull and chime correctly
 
-a2_headcrabs_tunnel
-===================
+IS OR WILL BE (a2_headcrabs_tunnel)
+===================================
 
 Changed flashlight pickup to support automatic flashlight functionality
 Changed flashlight messages depending on auto/manual
 
-a2_drainage
-===========
+IS OR WILL BE (a2_drainage)
+===========================
 
 Changed the rollup doors crank wheels to turn
 
-a2_train_yard
-=============
+IS OR WILL BE (a2_train_yard)
+=============================
 
 Changed the traincar hatch to open using the multitool instead of using the hatch
 
-a3_station_street
-=================
+SUPERWEAPON (a3_station_street)
+===============================
 
 Changed the elevator buttons to work fully
 Changed the hotel window to auto-teleport/break/close
 
-a3_hotel_lobby_basement
-=======================
+THE NORTHERN STAR (a3_hotel_lobby_basement)
+===========================================
 
 Changed the elevator power puzzle to use all points correctly
 
-a3_hotel_underground_pit
-========================
+THE NORTHERN STAR (a3_hotel_underground_pit)
+============================================
 
 Changed the Combine elevator call button to only work on the button
 Changed the Combine elevator to use the handle instead of the door to open/close
 
-a3_hotel_interior_rooftop
-=========================
+THE NORTHERN STAR (a3_hotel_interior_rooftop)
+=============================================
 
 Changed the "zombie party" window to open and crouch-jump teleport in instead of teleporting on USE
 Changed the circuit breaker to correctly pull and trigger the auto-flashlight (if used)
 
-a3_hotel_street
-===============
+THE NORTHERN STAR (a3_hotel_street)
+===================================
 
 Added missing tripmines
 Changed the tripmine disablement coding
 Changed the tripmine trap door to open both ways once initially opened
 
-a3_c17_processing_plant
-=======================
+ARMS RACE (a3_c17_processing_plant)
+===================================
 
 Changed the vent door's opening code
 Changed the scissor platform to raise/lower with mouse1/mouse2
@@ -109,8 +109,8 @@ Changed the Mine room back to original
 Changed the pallet levers so they move correctly (platform bug exists on raise/lower, needs lateral move to release)
 Changed the shack toner puzzle to correctly fire
 
-a3_distillery
-=============
+JEFF (a3_distillery)
+====================
 
 Added a notarget for Jeff.  He can still hear and move; to restrict that change setdeafstate and suppressmovement to 1
 Added two missing ladder climbs
@@ -126,41 +126,41 @@ Changed the cover mouth tutorial to be earlier
 Changed the vodka counting so it plays the correct audio in the Zoo, but might not be necessary
 Removed most of the cellar changes as they are unnecessary
 
-a4_c17_zoo
-==========
+CAPTIVITY (a4_c17_zoo)
+======================
 
 Changed the tunnel teleport slightly and added a return
 Changed the gate lever to be movable if unpowered
 Changed a toner port to close when used
 Removed some unnecessary changes
 
-a4_c17_tanker_yard
+REVELATIONS (a4_c17_tanker_yard)
 ==================
 
 Changed the portaloo lever to require holding USE
 Changed the bridge crank to require holding USE
 Removed some unnecessary changes
 
-a4_c17_water_tower
-==================
+BREAKING AND ENTERING (a4_c17_water_tower)
+==========================================
 
 Changed the pipe crane to move right/left with mouse1/mouse2
 Changed the vertical pallet levers to work correctly
 
-a4_c17_parking_garage
-=====================
+BREAKING AND ENTERING (a4_c17_parking_garage)
+=============================================
 
 Changed the view orientation when starting the level
 Changed the falling cabinet door to need to be used to open
 Changed some toner path junctions to original orientation
 Changed the Combine gun release key from J to the normal USE button (default E)
 
-a5_vault
-========
+POINT EXTRACTION (a5_vault)
+===========================
 
 No changes (except ladder)
 
-a5_ending
-=========
+POINT EXTRACTION (a5_ending)
+============================
 
 Changed the end interaction sequence to require using the two candlers instead of it being automatic
