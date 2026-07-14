@@ -34,7 +34,7 @@ Changes can be found on the [change log](https://github.com/real-pmein1/HLA-NoVR
 - Project Management, Steam Deck Version and Motion Controls by Spider-Man
 - Former Main Development by GB_2
 - Development Support by Esdras Tarsis
-- Discord Server Management by ITz TarekInnit and syph0
+- Discord Server Management by Tarek and syph0
 - Scripts for Addons by Hypercycle
 - Animation Lead, HUD, Development Support and more by withoutaface
 - Animation and 3D Modelling by Jake, Demonic, Seal, UnearthlyGoose, MTB and LIL PIF
