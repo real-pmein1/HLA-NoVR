@@ -42,6 +42,9 @@ https://discord.gg/AyfBeuZXsR
 
 - Launcher Animated Backgrounds by Half-Peeps
 
+## Contributors
+ - Ladders, auto-flashlight, QoL fixes/updates by pmein1
+
 ## Special Thanks
 - JJL772 for making the flashlight and jump scripts: https://github.com/JJL772/half-life-alyx-scripts
 - Withoutaface for making the amazing HUD: https://github.com/withoutaface/HLA-NoVR-alyxhl2-ui-weapons
